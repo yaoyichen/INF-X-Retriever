@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <strong>INF-X-Retriever</strong> is a general-purpose dense reasoning retrieval solution developed by <strong>Infinite Light Years (INF)</strong>.<br>
-  It achieves high-quality retrieval given a task database (<mathcal>X</mathcal>) and few-shot examples, prioritizing industrial viability and reasoning capability over complexity.
+  <strong>INF-X-Retriever</strong> is a production-grade dense reasoning retrieval framework developed by <strong>Infinite Light Years (INF)</strong>.<br>
+  It delivers robust retrieval performance across arbitrary task databases (<mathcal>X</mathcal>) with minimal supervision, emphasizing industrial deployability and reasoning depth over architectural complexity.
 </p>
 
 <p align="center">
@@ -28,66 +28,66 @@
 
 ## 📖 Introduction
 
-We are witnessing a paradigm shift in search behavior driven by the Large Language Model (LLM) era.
+The advent of Large Language Models (LLMs) has fundamentally transformed information retrieval paradigms.
 
-* **Pre-LLM Era:** Users provided short, keyword-centric queries.
-* **LLM Era:** Users treat the engine as an intelligent processor. Queries are now complex, containing background descriptions, instruction constraints, and format requirements—elements that are "noise" to traditional retrievers.
+* **Pre-LLM Era:** Users issued concise, keyword-driven queries optimized for lexical matching.
+* **LLM Era:** Users engage with retrieval systems as reasoning agents. Queries now encompass contextual narratives, explicit constraints, and structured formatting requirements—elements that constitute semantic noise for conventional retrieval architectures.
 
-To meet these new demands, a retrieval engine must possess deep reasoning capabilities to identify the core intent amidst complex instructions. **INF-X-Retriever** is designed to solve this challenge. We validate our approach on the **BRIGHT Benchmark**, a dataset derived from real-world human data that requires intensive reasoning to locate relevant documents.
+Addressing this evolution demands retrieval systems capable of sophisticated intent distillation from verbally complex inputs. **INF-X-Retriever** is purpose-built for this challenge. We validate our methodology on the **BRIGHT Benchmark**, a curated dataset reflecting real-world query complexity that necessitates reasoning-intensive document matching.
 
 ---
 
 ## 💡 Design Philosophy
 
-Our approach is grounded in **Pragmatism** and **First Principles Thinking**. While many solutions on the BRIGHT leaderboard employ complex multi-stage pipelines, we deliberately chose a different path—one optimized for **industrial deployability**, **logical consistency**, and **computational efficiency**. 
+Our methodology is rooted in **Engineering Pragmatism** and **First Principles Reasoning**. While competitive solutions on the BRIGHT leaderboard gravitate toward elaborate multi-stage architectures, we pursue a fundamentally different trajectory—one that prioritizes **production readiness**, **architectural coherence**, and **computational parsimony**. 
 
-> 🎯 **Core Principle:** *"Less is More"* — Maximum effectiveness through minimal complexity.
+> 🎯 **Core Principle:** *"Less is More"* — Maximal efficacy through deliberate minimalism.
 
 ### 🚫 No Rerankers
 
-**Rationale:** *Redundant computation in RAG pipelines*
+**Rationale:** *Architectural redundancy in RAG workflows*
 
-Reranking modules add latency and cost, yet provide marginal value. Since downstream RAG systems already employ an LLM for answer generation (QA), this LLM can inherently discriminate among retrieved contexts—making explicit reranking redundant.
+Reranking stages introduce non-trivial latency and computational overhead while yielding diminishing returns. Given that downstream RAG systems invariably employ an LLM for answer synthesis, this component inherently performs context discrimination—rendering explicit reranking architecturally superfluous.
 
-**Trade-off:** We exchange slight ranking precision for substantial gains in inference speed and resource efficiency.
+**Trade-off:** We sacrifice marginal ranking precision for substantial improvements in inference throughput and operational efficiency.
 
 ### 🚫 No HyDE
 
-**Rationale:** *Contradicts RAG's fundamental purpose*
+**Rationale:** *Epistemological inconsistency with RAG objectives*
 
-Hypothetical Document Embeddings (HyDE) prompt an LLM to generate ideal answers, then retrieve similar documents. This approach suffers from a logical paradox:
-- **If the LLM knows the answer** → RAG is unnecessary
-- **If the LLM doesn't know** → Generated hypothesis is likely hallucinated
+Hypothetical Document Embeddings (HyDE) leverage LLMs to synthesize idealized answers, subsequently retrieving semantically proximate documents. This methodology embodies a fundamental logical contradiction:
+- **If the LLM possesses domain knowledge** → Retrieval augmentation becomes obsolete
+- **If the LLM lacks domain knowledge** → Synthesized hypotheses constitute hallucinated artifacts
 
-While HyDE may boost benchmarks (where answers lie within training data), it **fails in truly novel domains**—the exact scenario RAG is designed for.
+While HyDE demonstrates benchmark efficacy (leveraging training data overlap), it **fundamentally fails in out-of-distribution domains**—precisely the scenarios for which RAG architectures are engineered.
 
 ### ⚡ Radical Simplicity
 
-**Rationale:** *Complexity is a liability in production*
+**Rationale:** *Architectural complexity constitutes operational debt*
 
-We deliberately avoid common techniques that complicate deployment:
+We systematically eschew conventional techniques that introduce deployment fragility:
 
-- **No sparse retrieval** (e.g., BM25) — No hybrid fusion pipelines to tune and maintain
-- **No multi-query expansion** — Single-pass query alignment reduces latency
-- **No ensemble methods** — One robust model beats brittle combinations
+- **No sparse retrieval** (e.g., BM25) — Eliminates hybrid fusion complexity and hyperparameter sensitivity
+- **No multi-query expansion** — Single-pass alignment minimizes inference latency
+- **No ensemble methods** — Monolithic robustness supersedes fragile model combinations
 
-**Result:** A solution that is **easier to deploy**, **faster to run**, and **simpler to debug** in production environments.
+**Result:** A system that is **operationally streamlined**, **latency-optimized**, and **diagnostically transparent** in production deployments.
 
 ---
 
 ## 🛠️ Architecture
 
-Our pipeline consists of two streamlined components:
+Our system comprises two tightly integrated components:
 
 ### 🔍 Query Aligner
-* **Model:** `inf-query-aligner`
-* **Method:** Fine-tuned on **Qwen2.5-7B-instruct** using **Reinforcement Learning**.
-* **Function:** Bridges the gap between the user's raw input and the retriever. It performs pure **Query Alignment**—stripping away noise and formatting instructions to isolate the search intent—without generating hypothetical documents.
+* **Model:** [🤗 infly/inf-query-aligner](https://huggingface.co/infly/inf-query-aligner)
+* **Method:** Reinforcement Learning fine-tuning on [**Qwen2.5-7B-instruct**](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) foundation.
+* **Function:** Performs semantic intent distillation from verbally complex queries. Executes pure **Query Alignment**—eliminating extraneous formatting directives and contextual noise to extract core retrieval intent—explicitly avoiding hypothetical document generation.
 
 ### 🚀 Retriever
-* **Model:** `inf-retriever-v1-pro`
-* **Method:** Post-trained on the generic `inf-retriever-v1` with a small amount of long-query data.
-* **Function:** A robust dense retrieval model that is not overfitted to specific search depths, ensuring generalization across tasks.
+* **Model:** [🤗 infly/inf-retriever-v1-pro](https://huggingface.co/infly/inf-retriever-v1-pro)
+* **Method:** Continual training on the general-purpose [**inf-retriever-v1**](https://huggingface.co/infly/inf-retriever-v1) backbone with targeted long-query adaptation.
+* **Function:** A generalized dense retrieval architecture resistant to depth-specific overfitting, ensuring robust cross-task transferability.
 
 ---
 
@@ -101,13 +101,11 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
 | BGE-Reasoner-0928 | 46.40 | 0.685 | 0.664 | 0.406 | 0.531 | **0.432** | 0.441 | 0.290 | 0.583 |
 | DIVER (v2) | 45.80 | 0.680 | 0.625 | 0.420 | 0.582 | 0.415 | 0.443 | 0.348 | 0.526 |
 
-*(Note: Selected columns shown for brevity. See the official leaderboard for full metrics.)*
-
 ---
 
 ## 📥 Models
 
-We have open-sourced our models to contribute to the community.
+We have released both components as open-source artifacts to facilitate community research and development.
 
 * **Aligner:** [🤗 infly/inf-query-aligner](https://huggingface.co/infly/inf-query-aligner)
 * **Retriever:** [🤗 infly/inf-retriever-v1-pro](https://huggingface.co/infly/inf-retriever-v1-pro)
@@ -116,7 +114,7 @@ We have open-sourced our models to contribute to the community.
 
 ## 🖊️ Citation
 
-If you find INF-X-Retriever helpful for your research or business, please cite our work:
+If INF-X-Retriever contributes to your research or production systems, please cite our work:
 
 ```bibtex
 @misc{yao2025infx,
