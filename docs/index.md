@@ -104,9 +104,9 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
 
 | Model | **Avg ALL** | **StackExchange** | **Coding** | **Theorem-based** |
 |:---|:---:|:---:|:---:|:---:|
-| **INF-X-Retriever** | **55.04** | **55.03** | **65.98** | **47.77** |
-| BGE-Reasoner-0928 | 46.40 | 52.00 | 35.30 | 40.70 |
-| DIVER (v2) | 45.80 | 52.20 | 35.30 | 38.70 |
+| **INF-X-Retriever** | **55.0** | **55.0** | **66.0** | **47.8** |
+| BGE-Reasoner-0928 | 46.4 | 52.0 | 35.3 | 40.7 |
+| DIVER (v2) | 45.8 | 52.2 | 35.3 | 38.7 |
 
 ### Detailed Results Across 12 Datasets
 
@@ -137,7 +137,7 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
   <tbody>
     <tr>
       <td><strong>INF-X-Retriever</strong></td>
-      <td align="center"><strong>55.04</strong></td>
+      <td align="center"><strong>55.0</strong></td>
       <td align="center" style="border-left: 2px solid #ccc;"><strong>66.1</strong></td>
       <td align="center"><strong>62.8</strong></td>
       <td align="center"><strong>51.8</strong></td>
@@ -153,7 +153,7 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
     </tr>
     <tr>
       <td>BGE-Reasoner-0928</td>
-      <td align="center">46.40</td>
+      <td align="center">46.4</td>
       <td align="center" style="border-left: 2px solid #ccc;">68.5</td>
       <td align="center">66.4</td>
       <td align="center">40.6</td>
@@ -169,7 +169,7 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
     </tr>
     <tr>
       <td>DIVER (v2)</td>
-      <td align="center">45.80</td>
+      <td align="center">45.8</td>
       <td align="center" style="border-left: 2px solid #ccc;">68.0</td>
       <td align="center">62.5</td>
       <td align="center">42.0</td>
