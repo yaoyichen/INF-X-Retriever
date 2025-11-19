@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400">
+  <defs>
+    <style>
+      .module-box { fill: #f8f9fa; stroke: #4a5568; stroke-width: 2; rx: 8; }
+      .highlight-box { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2.5; rx: 8; }
+      .data-box { fill: #fff3e0; stroke: #f57c00; stroke-width: 2; rx: 8; }
+      .title-text { font-family: 'Arial', sans-serif; font-size: 16px; font-weight: bold; fill: #1a202c; }
+      .desc-text { font-family: 'Arial', sans-serif; font-size: 12px; fill: #4a5568; }
+      .arrow { stroke: #4a5568; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .arrow-highlight { stroke: #1976d2; stroke-width: 3; fill: none; marker-end: url(#arrowhead-blue); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#4a5568" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1976d2" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="400" fill="#ffffff"/>
+  
+  <!-- User Query -->
+  <rect x="20" y="150" width="160" height="100" class="module-box"/>
+  <text x="100" y="185" text-anchor="middle" class="title-text">User Query</text>
+  <text x="100" y="205" text-anchor="middle" class="desc-text">Complex</text>
+  <text x="100" y="222" text-anchor="middle" class="desc-text">Instructions</text>
+  
+  <!-- Arrow 1 -->
+  <path d="M 180 200 L 230 200" class="arrow-highlight"/>
+  
+  <!-- Query Aligner (Highlighted) -->
+  <rect x="230" y="120" width="180" height="160" class="highlight-box"/>
+  <text x="320" y="150" text-anchor="middle" class="title-text">🔍 Query Aligner</text>
+  <text x="320" y="175" text-anchor="middle" class="desc-text">inf-query-aligner</text>
+  <text x="320" y="195" text-anchor="middle" class="desc-text">Reinforcement Learning</text>
+  <line x1="240" y1="205" x2="400" y2="205" stroke="#1976d2" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="320" y="225" text-anchor="middle" class="desc-text" font-style="italic">Intent Distillation</text>
+  <text x="320" y="245" text-anchor="middle" class="desc-text">Noise Elimination</text>
+  
+  <!-- Arrow 2 -->
+  <path d="M 410 200 L 460 200" class="arrow-highlight"/>
+  
+  <!-- Aligned Query -->
+  <rect x="460" y="165" width="130" height="70" class="module-box"/>
+  <text x="525" y="190" text-anchor="middle" class="title-text">Aligned</text>
+  <text x="525" y="210" text-anchor="middle" class="title-text">Query</text>
+  
+  <!-- Arrow 3 -->
+  <path d="M 590 200 L 640 200" class="arrow-highlight"/>
+  
+  <!-- Retriever (Highlighted) -->
+  <rect x="640" y="120" width="180" height="160" class="highlight-box"/>
+  <text x="730" y="150" text-anchor="middle" class="title-text">🚀 Retriever</text>
+  <text x="730" y="175" text-anchor="middle" class="desc-text">inf-retriever-v1-pro</text>
+  <text x="730" y="195" text-anchor="middle" class="desc-text">Dense Embedding</text>
+  <line x1="650" y1="205" x2="810" y2="205" stroke="#1976d2" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="730" y="235" text-anchor="middle" class="desc-text" font-style="italic">Vector Search</text>
+  
+  <!-- Arrow 4 -->
+  <path d="M 820 200 L 870 200" class="arrow"/>
+  
+  <!-- Task Database -->
+  <rect x="870" y="165" width="130" height="70" class="data-box"/>
+  <text x="935" y="190" text-anchor="middle" class="title-text">Top-k</text>
+  <text x="935" y="210" text-anchor="middle" class="title-text">Documents</text>
+  
+  <!-- Arrow 5 -->
+  <path d="M 1000 200 L 1050 200" class="arrow"/>
+  
+  <!-- Downstream RAG -->
+  <rect x="1000" y="150" width="180" height="100" class="module-box"/>
+  <text x="1090" y="185" text-anchor="middle" class="title-text">Downstream</text>
+  <text x="1090" y="205" text-anchor="middle" class="title-text">RAG / QA</text>
+  <text x="1090" y="225" text-anchor="middle" class="desc-text">LLM Synthesis</text>
+  
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" style="font-family: Arial; font-size: 24px; font-weight: bold; fill: #1a202c;">INF-X-Retriever Architecture</text>
+  
+  <!-- Legend -->
+  <rect x="20" y="320" width="18" height="18" class="highlight-box"/>
+  <text x="45" y="333" class="desc-text">Core Components (Our Contributions)</text>
+  
+  <rect x="280" y="320" width="18" height="18" class="module-box"/>
+  <text x="305" y="333" class="desc-text">Input/Output</text>
+  
+  <rect x="450" y="320" width="18" height="18" class="data-box"/>
+  <text x="475" y="333" class="desc-text">Retrieved Data</text>
+</svg>
+

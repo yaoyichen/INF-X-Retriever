@@ -78,6 +78,10 @@ We systematically eschew conventional techniques that introduce deployment fragi
 
 ## 🛠️ Architecture
 
+<p align="center">
+  <img src="assets/architecture.svg" alt="INF-X-Retriever Architecture" width="100%"/>
+</p>
+
 Our system comprises two tightly integrated components:
 
 ### 🔍 Query Aligner
@@ -98,7 +102,7 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
 
 ### Overall & Category Performance
 
-| Model | **Avg ALL** | **StackExchange** | **Code** | **Theorems** |
+| Model | **Avg ALL** | **StackExchange** | **Coding** | **Theorem-based** |
 |:---|:---:|:---:|:---:|:---:|
 | **INF-X-Retriever** | **55.04** | **55.03** | **65.98** | **47.77** |
 | BGE-Reasoner-0928 | 46.40 | 52.00 | 35.30 | 40.70 |
@@ -106,11 +110,81 @@ As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the
 
 ### Detailed Results Across 12 Datasets
 
-| Model | Biology | Earth Sci | Economics | Psychology | Robotics | StackOverflow | Sustainable Living | LeetCode | Pony | AOPS | TheoremQA (Q) | TheoremQA (T) |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **INF-X-Retriever** | **66.1** | **62.8** | **51.8** | **61.1** | 40.6 | **51.2** | **51.8** | **45.4** | **86.5** | **34.6** | **49.4** | **59.3** |
-| BGE-Reasoner-0928 | 68.5 | 66.4 | 40.6 | 53.1 | **43.2** | 44.1 | 47.8 | 29.0 | 41.6 | 17.2 | 46.5 | 58.3 |
-| DIVER (v2) | 68.0 | 62.5 | 42.0 | 58.2 | 41.5 | 44.3 | 49.2 | 34.8 | 32.9 | 19.1 | 44.3 | 52.6 |
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Model</th>
+      <th rowspan="2">Avg</th>
+      <th colspan="7" style="text-align:center; border-left: 2px solid #ccc;">StackExchange</th>
+      <th colspan="2" style="text-align:center; border-left: 2px solid #ccc;">Coding</th>
+      <th colspan="3" style="text-align:center; border-left: 2px solid #ccc;">Theorem-based</th>
+    </tr>
+    <tr>
+      <th style="border-left: 2px solid #ccc;">Bio.</th>
+      <th>Earth.</th>
+      <th>Econ.</th>
+      <th>Psy.</th>
+      <th>Rob.</th>
+      <th>Stack.</th>
+      <th>Sus.</th>
+      <th style="border-left: 2px solid #ccc;">Leet.</th>
+      <th>Pony</th>
+      <th style="border-left: 2px solid #ccc;">AoPS</th>
+      <th>TheoQ.</th>
+      <th>TheoT.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>INF-X-Retriever</strong></td>
+      <td align="center"><strong>55.04</strong></td>
+      <td align="center" style="border-left: 2px solid #ccc;"><strong>66.1</strong></td>
+      <td align="center"><strong>62.8</strong></td>
+      <td align="center"><strong>51.8</strong></td>
+      <td align="center"><strong>61.1</strong></td>
+      <td align="center">40.6</td>
+      <td align="center"><strong>51.2</strong></td>
+      <td align="center"><strong>51.8</strong></td>
+      <td align="center" style="border-left: 2px solid #ccc;"><strong>45.4</strong></td>
+      <td align="center"><strong>86.5</strong></td>
+      <td align="center" style="border-left: 2px solid #ccc;"><strong>34.6</strong></td>
+      <td align="center"><strong>49.4</strong></td>
+      <td align="center"><strong>59.3</strong></td>
+    </tr>
+    <tr>
+      <td>BGE-Reasoner-0928</td>
+      <td align="center">46.40</td>
+      <td align="center" style="border-left: 2px solid #ccc;">68.5</td>
+      <td align="center">66.4</td>
+      <td align="center">40.6</td>
+      <td align="center">53.1</td>
+      <td align="center"><strong>43.2</strong></td>
+      <td align="center">44.1</td>
+      <td align="center">47.8</td>
+      <td align="center" style="border-left: 2px solid #ccc;">29.0</td>
+      <td align="center">41.6</td>
+      <td align="center" style="border-left: 2px solid #ccc;">17.2</td>
+      <td align="center">46.5</td>
+      <td align="center">58.3</td>
+    </tr>
+    <tr>
+      <td>DIVER (v2)</td>
+      <td align="center">45.80</td>
+      <td align="center" style="border-left: 2px solid #ccc;">68.0</td>
+      <td align="center">62.5</td>
+      <td align="center">42.0</td>
+      <td align="center">58.2</td>
+      <td align="center">41.5</td>
+      <td align="center">44.3</td>
+      <td align="center">49.2</td>
+      <td align="center" style="border-left: 2px solid #ccc;">34.8</td>
+      <td align="center">32.9</td>
+      <td align="center" style="border-left: 2px solid #ccc;">19.1</td>
+      <td align="center">44.3</td>
+      <td align="center">52.6</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
