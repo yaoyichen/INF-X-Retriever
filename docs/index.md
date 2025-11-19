@@ -95,11 +95,11 @@ Our system comprises two tightly integrated components:
 
 As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the [BRIGHT Benchmark](https://brightbenchmark.github.io/).
 
-| Model | **Avg** | Biology | Earth Sci | Economics | Psychology | Robotics | StackOverflow | LeetCode | TheoremQA (T) |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **INF-X-Retriever** | **55.04** | **0.661** | **0.628** | **0.518** | **0.611** | 0.406 | **0.512** | **0.454** | **0.593** |
-| BGE-Reasoner-0928 | 46.40 | 0.685 | 0.664 | 0.406 | 0.531 | **0.432** | 0.441 | 0.290 | 0.583 |
-| DIVER (v2) | 45.80 | 0.680 | 0.625 | 0.420 | 0.582 | 0.415 | 0.443 | 0.348 | 0.526 |
+| Model | **Avg ALL** | **StackExchange** | **Code** | **Theorems** | Biology | Earth Sci | Economics | Psychology | Robotics | StackOverflow | Sustainable Living | LeetCode | Pony | AOPS | TheoremQA (Q) | TheoremQA (T) |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **INF-X-Retriever** | **55.04** | **55.03** | **65.98** | **47.77** | **0.661** | **0.628** | **0.518** | **0.611** | 0.406 | **0.512** | **0.518** | **0.454** | **0.865** | **0.346** | **0.494** | **0.593** |
+| BGE-Reasoner-0928 | 46.40 | 52.00 | 35.30 | 40.70 | 0.685 | 0.664 | 0.406 | 0.531 | **0.432** | 0.441 | 0.478 | 0.290 | 0.416 | 0.172 | 0.465 | 0.583 |
+| DIVER (v2) | 45.80 | 52.20 | 35.30 | 38.70 | 0.680 | 0.625 | 0.420 | 0.582 | 0.415 | 0.443 | 0.492 | 0.348 | 0.329 | 0.191 | 0.443 | 0.526 |
 
 ---
 
