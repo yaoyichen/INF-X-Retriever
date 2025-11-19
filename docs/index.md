@@ -111,3 +111,4 @@ If you find INF-X-Retriever helpful for your research or business, please cite o
     year = {2025},
     note = {GitHub repository}
 }
+```
