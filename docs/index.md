@@ -1,19 +1,28 @@
-<div align="center">
+<h1 align="center">⚡ INF-X-Retriever</h1>
 
-# ⚡ INF-X-Retriever
-### A Pragmatic & General Solution for Reasoning-Intensive Retrieval
+<p align="center">
+  <strong>A Pragmatic & General Solution for Reasoning-Intensive Retrieval</strong>
+</p>
 
-[![Rank](https://img.shields.io/badge/BRIGHT_Benchmark-Rank_1st-8A2BE2)](https://brightbenchmark.github.io/)
-[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-INF--Query--Aligner-blue)](https://huggingface.co/infly/inf-query-aligner)
-[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-INF--Retriever-yellow)](https://huggingface.co/infly/inf-retriever-v1-pro)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <a href="https://brightbenchmark.github.io/"><img src="https://img.shields.io/badge/BRIGHT_Benchmark-Rank_1st-8A2BE2" alt="Rank"></a>
+  <a href="https://huggingface.co/infly/inf-query-aligner"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-INF--Query--Aligner-blue" alt="Hugging Face"></a>
+  <a href="https://huggingface.co/infly/inf-retriever-v1-pro"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-INF--Retriever-yellow" alt="Hugging Face"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
+</p>
 
-**INF-X-Retriever** is a general-purpose dense reasoning retrieval solution developed by **Infinite Light Years (INF)**.  
-It achieves high-quality retrieval given a task database ($X$) and few-shot examples, prioritizing industrial viability and reasoning capability over complexity.
+<p align="center">
+  <strong>INF-X-Retriever</strong> is a general-purpose dense reasoning retrieval solution developed by <strong>Infinite Light Years (INF)</strong>.<br>
+  It achieves high-quality retrieval given a task database ($X$) and few-shot examples, prioritizing industrial viability and reasoning capability over complexity.
+</p>
 
-[Introduction](#-introduction) • [Philosophy](#-philosophy--methodology) • [Performance](#-performance) • [Models](#-models) • [Citation](#-citation)
-
-</div>
+<p align="center">
+  <a href="#-introduction">Introduction</a> •
+  <a href="#-philosophy--methodology">Philosophy</a> •
+  <a href="#-performance">Performance</a> •
+  <a href="#-models">Models</a> •
+  <a href="#-citation">Citation</a>
+</p>
 
 ---
 
@@ -72,7 +81,7 @@ Our pipeline consists of two streamlined components:
 As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the [BRIGHT Benchmark](https://brightbenchmark.github.io/).
 
 | Model | **Avg** | Biology | Earth Sci | Economics | Psychology | Robotics | StackOverflow | LeetCode | TheoremQA (T) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **INF-X-Retriever** | **55.04** | **0.661** | **0.628** | **0.518** | **0.611** | 0.406 | **0.512** | **0.454** | **0.593** |
 | BGE-Reasoner-0928 | 46.40 | 0.685 | 0.664 | 0.406 | 0.531 | **0.432** | 0.441 | 0.290 | 0.583 |
 | DIVER (v2) | 45.80 | 0.680 | 0.625 | 0.420 | 0.582 | 0.415 | 0.443 | 0.348 | 0.526 |
@@ -98,7 +107,7 @@ If you find INF-X-Retriever helpful for your research or business, please cite o
 @misc{yao2025infx,
     title = {INF-X-Retriever},
     author = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Yinhui Xu, Wei Chu, Yuan Qi},
-    howpublished = {\url{[https://yaoyichen.github.io/INF-X-Retriever/](https://yaoyichen.github.io/INF-X-Retriever/)}},
+    howpublished = {\url{https://yaoyichen.github.io/INF-X-Retriever/}},
     year = {2025},
     note = {GitHub repository}
 }
