@@ -78,22 +78,23 @@ We systematically eschew conventional techniques that introduce deployment fragi
 
 ## 🛠️ Architecture
 
-<p align="center">
-  <img src="assets/architecture.svg" alt="INF-X-Retriever Architecture" width="100%"/>
-</p>
+
 
 Our system comprises two tightly integrated components:
 
 ### 🔍 Query Aligner
-* **Model:** [🤗 infly/inf-query-aligner](https://huggingface.co/infly/inf-query-aligner)
-* **Method:** Reinforcement Learning fine-tuning on [**Qwen2.5-7B-instruct**](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) foundation.
+* **Model:** [**🤗 infly/inf-query-aligner**](https://huggingface.co/infly/inf-query-aligner)
+* **Method:** Reinforcement Learning fine-tuning on [Qwen2.5-7B-instruct](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) foundation.
 * **Function:** Performs semantic intent distillation from verbally complex queries. Executes pure **Query Alignment**—eliminating extraneous formatting directives and contextual noise to extract core retrieval intent—explicitly avoiding hypothetical document generation.
 
 ### 🚀 Retriever
-* **Model:** [🤗 infly/inf-retriever-v1-pro](https://huggingface.co/infly/inf-retriever-v1-pro)
-* **Method:** Continual training on the general-purpose [**inf-retriever-v1**](https://huggingface.co/infly/inf-retriever-v1) backbone with targeted long-query adaptation.
+* **Model:** [**🤗 infly/inf-retriever-v1-pro**](https://huggingface.co/infly/inf-retriever-v1-pro)
+* **Method:** Continual training on the general-purpose [inf-retriever-v1](https://huggingface.co/infly/inf-retriever-v1) backbone with targeted long-query adaptation.
 * **Function:** A generalized dense retrieval architecture resistant to depth-specific overfitting, ensuring robust cross-task transferability.
 
+<p align="center">
+  <img src="assets/architecture.svg" alt="INF-X-Retriever Architecture" width="100%"/>
+</p>
 ---
 
 ## 🏆 Performance
