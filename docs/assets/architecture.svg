@@ -98,7 +98,7 @@
     <rect width="200" height="160" rx="12" fill="url(#card-blue)" class="node-rect" stroke="#bfdbfe"/>
     <!-- Header -->
     <path d="M 0 12 Q 0 0 12 0 L 188 0 Q 200 0 200 12 L 200 40 L 0 40 Z" fill="url(#header-blue)"/>
-    <text x="100" y="26" text-anchor="middle" class="card-title">🔍 Query Aligner</text>
+    <text x="100" y="26" text-anchor="middle" class="card-title">🚀 Query Aligner</text>
     
     <!-- Content -->
     <text x="100" y="65" text-anchor="middle" class="card-subtitle">inf-query-aligner</text>
@@ -128,7 +128,7 @@
     <rect width="200" height="160" rx="12" fill="url(#card-orange)" class="node-rect" stroke="#fed7aa"/>
     <!-- Header -->
     <path d="M 0 12 Q 0 0 12 0 L 188 0 Q 200 0 200 12 L 200 40 L 0 40 Z" fill="url(#header-orange)"/>
-    <text x="100" y="26" text-anchor="middle" class="card-title">🚀 Retriever</text>
+    <text x="100" y="26" text-anchor="middle" class="card-title">🔍 Retriever</text>
     
     <!-- Content -->
     <text x="100" y="65" text-anchor="middle" class="card-subtitle">inf-retriever-v1-pro</text>
