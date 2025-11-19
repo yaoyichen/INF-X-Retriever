@@ -79,7 +79,7 @@ We systematically eschew conventional techniques that introduce deployment fragi
 ## 🛠️ Architecture
 
 <p align="center">
-  <img src="assets/architecture_new.svg" alt="INF-X-Retriever Architecture" width="100%"/>
+  <img src="assets/architecture.svg" alt="INF-X-Retriever Architecture" width="100%"/>
 </p>
 
 Our system comprises two tightly integrated components:
