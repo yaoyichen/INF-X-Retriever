@@ -18,10 +18,11 @@
 
 <p align="center">
   <a href="#-introduction">Introduction</a> •
-  <a href="#-philosophy--methodology">Philosophy</a> •
+  <a href="#-design-philosophy">Philosophy</a> •
   <a href="#-performance">Performance</a> •
   <a href="#-models">Models</a> •
-  <a href="#-citation">Citation</a>
+  <a href="#-citation">Citation</a> •
+  <a href="#-contact">Contact</a>
 </p>
 
 ---
@@ -126,12 +127,23 @@ We have released both components as open-source artifacts to facilitate communit
 
 If INF-X-Retriever contributes to your research or production systems, please cite our work:
 
-```bibtex
+```
 @misc{yao2025infx,
     title        = {INF-X-Retriever},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Yinhui Xu, Wei Chu, Yuan Qi},
+    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Zhouyu Jiang, Junhan Yang, Yinhui Xu, Wei Chu, Yuan Qi},
     year         = {2025},
     url          = {https://yaoyichen.github.io/INF-X-Retriever/},
     note         = {GitHub repository}
 }
 ```
+
+---
+
+## 📬 Contact
+
+We welcome collaboration and inquiries from researchers and practitioners interested in reasoning-intensive retrieval.
+
+**Project Lead:** Yichen Yao  
+**Email:** [eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai)
+
+For technical discussions, potential collaborations, or questions about deployment, please feel free to reach out.
