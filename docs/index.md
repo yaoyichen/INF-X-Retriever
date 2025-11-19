@@ -120,10 +120,10 @@ If you find INF-X-Retriever helpful for your research or business, please cite o
 
 ```bibtex
 @misc{yao2025infx,
-    title = {INF-X-Retriever},
-    author = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Yinhui Xu, Wei Chu, Yuan Qi},
-    howpublished = {\url{https://yaoyichen.github.io/INF-X-Retriever/}},
-    year = {2025},
-    note = {GitHub repository}
+    title        = {INF-X-Retriever},
+    author       = {Yichen Yao and Jiahe Wan and Yuxin Hong and Mengna Zhang and Junhan Yang and Yinhui Xu and Wei Chu and Yuan Qi},
+    year         = {2025},
+    url          = {https://yaoyichen.github.io/INF-X-Retriever/},
+    note         = {GitHub repository}
 }
 ```
