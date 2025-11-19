@@ -203,12 +203,12 @@ We have released both components as open-source artifacts to facilitate communit
 If INF-X-Retriever contributes to your research or production systems, please cite our work:
 
 ```
-@misc{yao2025infx,
+@misc{inf-x-retriever-2025,
     title        = {INF-X-Retriever},
     author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Zhouyu Jiang, Junhan Yang, Yinhui Xu, Wei Chu, Yuan Qi},
     year         = {2025},
-    url          = {https://yaoyichen.github.io/INF-X-Retriever/},
-    note         = {GitHub repository}
+    url          = {https://yaoyichen.github.io/INF-X-Retriever},
+    publisher    = {GitHub repository}
 }
 ```
 
