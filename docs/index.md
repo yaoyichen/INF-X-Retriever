@@ -13,7 +13,7 @@
 
 <p align="center">
   <strong>INF-X-Retriever</strong> is a general-purpose dense reasoning retrieval solution developed by <strong>Infinite Light Years (INF)</strong>.<br>
-  It achieves high-quality retrieval given a task database ($X$) and few-shot examples, prioritizing industrial viability and reasoning capability over complexity.
+  It achieves high-quality retrieval given a task database (<mathcal>X</mathcal>) and few-shot examples, prioritizing industrial viability and reasoning capability over complexity.
 </p>
 
 <p align="center">
@@ -37,26 +37,41 @@ To meet these new demands, a retrieval engine must possess deep reasoning capabi
 
 ---
 
-## 💡 Philosophy & Methodology
+## 💡 Design Philosophy
 
-Our solution is built on **Pragmatism** and **First Principles**. While observing many mature solutions on the BRIGHT leaderboard, we chose a different path focused on industrial application and logical consistency. We believe **"Less is More."**
+Our approach is grounded in **Pragmatism** and **First Principles Thinking**. While many solutions on the BRIGHT leaderboard employ complex multi-stage pipelines, we deliberately chose a different path—one optimized for **industrial deployability**, **logical consistency**, and **computational efficiency**. 
 
-### 1. Rejection of Rerankers (No Rerank)
-> **Insight:** In industrial practice, the value added by a Rerank module is often marginal compared to its cost.
+> 🎯 **Core Principle:** *"Less is More"* — Maximum effectiveness through minimal complexity.
 
-Many solutions rely on LLM-based Rerankers. However, downstream RAG tasks already involve an LLM for Quality Assurance (QA). We believe the QA LLM can inherently select relevant contexts from retrieved documents without an explicit, computationally expensive, and latency-inducing sorting module.
+### 🚫 No Rerankers
 
-### 2. Rejection of HyDE (No Hypothetical Documents)
-> **Insight:** HyDE contradicts the fundamental purpose of RAG.
+**Rationale:** *Redundant computation in RAG pipelines*
 
-Hypothetical Document Embeddings (HyDE) rely on an LLM to "hallucinate" a perfect answer to search against. We reject this based on first principles:
-* If the LLM can generate a perfect hypothetical document, it already possesses the knowledge, rendering Retrieval-Augmented Generation (RAG) unnecessary.
-* If the knowledge is outside the LLM's scope, the hypothetical document is likely a hallucination, leading to poor retrieval.
-* While HyDE might boost scores on academic benchmarks (where data is often within the LLM's training set), it lacks robustness in real-world, unknown domains.
+Reranking modules add latency and cost, yet provide marginal value. Since downstream RAG systems already employ an LLM for answer generation (QA), this LLM can inherently discriminate among retrieved contexts—making explicit reranking redundant.
 
-### 3. Radical Simplicity
-* **No BM25:** We do not use sparse retrieval or complex fusion strategies.
-* **Single-Pass Alignment:** We use a single query alignment step rather than multiple variations.
+**Trade-off:** We exchange slight ranking precision for substantial gains in inference speed and resource efficiency.
+
+### 🚫 No HyDE
+
+**Rationale:** *Contradicts RAG's fundamental purpose*
+
+Hypothetical Document Embeddings (HyDE) prompt an LLM to generate ideal answers, then retrieve similar documents. This approach suffers from a logical paradox:
+- **If the LLM knows the answer** → RAG is unnecessary
+- **If the LLM doesn't know** → Generated hypothesis is likely hallucinated
+
+While HyDE may boost benchmarks (where answers lie within training data), it **fails in truly novel domains**—the exact scenario RAG is designed for.
+
+### ⚡ Radical Simplicity
+
+**Rationale:** *Complexity is a liability in production*
+
+We deliberately avoid common techniques that complicate deployment:
+
+- **No sparse retrieval** (e.g., BM25) — No hybrid fusion pipelines to tune and maintain
+- **No multi-query expansion** — Single-pass query alignment reduces latency
+- **No ensemble methods** — One robust model beats brittle combinations
+
+**Result:** A solution that is **easier to deploy**, **faster to run**, and **simpler to debug** in production environments.
 
 ---
 
