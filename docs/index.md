@@ -205,7 +205,7 @@ If INF-X-Retriever contributes to your research or production systems, please ci
 ```
 @misc{inf-x-retriever-2025,
     title        = {INF-X-Retriever},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Zhouyu Jiang, Junhan Yang, Yinhui Xu, Wei Chu, Yuan Qi},
+    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Zhouyu Jiang, Junhan Yang, Yinghui Xu, Wei Chu, Yuan Qi},
     year         = {2025},
     url          = {https://yaoyichen.github.io/INF-X-Retriever},
     publisher    = {GitHub repository}
