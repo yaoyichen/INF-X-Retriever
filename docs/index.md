@@ -40,6 +40,10 @@ Addressing this evolution demands retrieval systems capable of sophisticated int
 
 ## 💡 Design Philosophy
 
+<p align="center">
+  <img src="assets/comparison.svg" alt="Pipeline Comparison" width="100%"/>
+</p>
+
 Our methodology is rooted in **Engineering Pragmatism** and **First Principles Reasoning**. While competitive solutions on the BRIGHT leaderboard gravitate toward elaborate multi-stage architectures, we pursue a fundamentally different trajectory—one that prioritizes **production readiness**, **architectural coherence**, and **computational parsimony**. 
 
 > 🎯 **Core Principle:** *"Less is More"* — Maximal efficacy through deliberate minimalism.

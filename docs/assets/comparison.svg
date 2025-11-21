@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <!-- Background -->
+  <rect width="800" height="320" fill="#ffffff" rx="10"/>
+  
+  <!-- Styles -->
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #333; }
+    .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 11px; fill: #666; text-anchor: middle; }
+    .box-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 600; fill: #333; text-anchor: middle; }
+    .sub-label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 10px; fill: #666; text-anchor: middle; }
+    .arrow { stroke: #999; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead-gray); }
+    .arrow-active { stroke: #2196f3; stroke-width: 2; fill: none; marker-end: url(#arrowhead-blue); }
+    .box-redundant { fill: #f9f9f9; stroke: #ddd; stroke-width: 1.5; stroke-dasharray: 4; }
+    .box-active { fill: #e3f2fd; stroke: #2196f3; stroke-width: 2; }
+    .box-retriever { fill: #fff8e1; stroke: #ffc107; stroke-width: 2; }
+    .box-standard { fill: #f0f0f0; stroke: #ddd; stroke-width: 1; }
+    .warning-text { fill: #e67e22; font-weight: 500; }
+    .handoff-text { fill: #2e7d32; font-weight: bold; font-size: 11px; text-anchor: middle; }
+  </style>
+  
+  <!-- Definitions -->
+  <defs>
+    <marker id="arrowhead-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#999"/>
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2196f3"/>
+    </marker>
+  </defs>
+
+  <!-- ========================================== -->
+  <!-- SECTION 1: Standard RAG Pipeline (Top) -->
+  <!-- ========================================== -->
+  
+  <text x="40" y="35" class="title" fill="#555">Legacy: Standard Complex RAG</text>
+  
+  <g transform="translate(0, 10)">
+    <!-- User Query -->
+    <rect x="40" y="40" width="100" height="40" rx="4" class="box-standard"/>
+    <text x="90" y="65" class="box-label">User Query</text>
+    
+    <!-- HyDE -->
+    <path d="M140 60 L170 60" class="arrow"/>
+    <rect x="170" y="30" width="120" height="60" rx="4" class="box-redundant"/>
+    <text x="230" y="55" class="box-label" fill="#777">HyDE / Expansion</text>
+    <text x="230" y="72" class="sub-label">"Hypothetical"</text>
+    
+    <!-- Retriever -->
+    <path d="M290 60 L320 60" class="arrow"/>
+    <rect x="320" y="40" width="100" height="40" rx="4" class="box-standard"/>
+    <text x="370" y="65" class="box-label">Retriever</text>
+    
+    <!-- Reranker -->
+    <path d="M420 60 L450 60" class="arrow"/>
+    <rect x="450" y="30" width="120" height="60" rx="4" class="box-redundant"/>
+    <text x="510" y="55" class="box-label" fill="#777">Reranker</text>
+    <text x="510" y="72" class="sub-label">"Re-scoring"</text>
+
+    <!-- LLM -->
+    <path d="M570 60 L600 60" class="arrow"/>
+    <rect x="600" y="40" width="100" height="40" rx="4" class="box-standard"/>
+    <text x="650" y="65" class="box-label">LLM Reader</text>
+
+    <!-- Warnings -->
+    <text x="230" y="105" class="label warning-text">⚠️ Hallucination Risk</text>
+    <text x="510" y="105" class="label warning-text">⚠️ High Latency</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="40" y1="145" x2="760" y2="145" stroke="#eee" stroke-width="1" stroke-dasharray="4"/>
+
+  <!-- ========================================== -->
+  <!-- SECTION 2: INF-X-Retriever (Bottom) -->
+  <!-- ========================================== -->
+  
+  <text x="40" y="180" class="title">⚡ Ours: INF-X-Retriever Streamlined</text>
+  
+  <g transform="translate(0, 15)">
+    <!-- User Query -->
+    <rect x="40" y="180" width="100" height="40" rx="4" class="box-standard"/>
+    <text x="90" y="205" class="box-label">User Query</text>
+
+    <!-- Query Aligner -->
+    <path d="M140 200 L170 200" class="arrow-active"/>
+    <rect x="170" y="170" width="120" height="60" rx="4" class="box-active"/>
+    <text x="230" y="195" class="box-label" fill="#1565c0">Query Aligner</text>
+    <text x="230" y="215" class="sub-label" fill="#1976d2">"Intent Extraction"</text>
+
+    <!-- Retriever -->
+    <path d="M290 200 L320 200" class="arrow-active"/>
+    <rect x="320" y="170" width="100" height="60" rx="4" class="box-retriever"/>
+    <text x="370" y="195" class="box-label" fill="#f57f17">Retriever</text>
+    <text x="370" y="215" class="sub-label" fill="#ff8f00">"Dense Retrieval"</text>
+
+    <!-- Direct to LLM -->
+    <!-- Draw arrow in two parts to leave gap for text -->
+    <path d="M420 200 L470 200" class="arrow-active" style="marker-end: none;"/>
+    <path d="M550 200 L600 200" class="arrow-active"/>
+    
+    <!-- Text in the gap -->
+    <text x="510" y="204" class="handoff-text">Direct Input</text>
+    
+    <rect x="600" y="180" width="100" height="40" rx="4" class="box-standard"/>
+    <text x="650" y="205" class="box-label">LLM Reader</text>
+
+    <!-- Benefits -->
+    <text x="230" y="245" class="label" fill="#2196f3" font-weight="bold">✅ Accurate Intent</text>
+    <text x="510" y="245" class="label" fill="#4caf50" font-weight="bold">⚡ Low Latency</text>
+  </g>
+
+</svg>
