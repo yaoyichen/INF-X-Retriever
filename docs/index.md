@@ -54,13 +54,19 @@ Reranking stages introduce non-trivial latency and computational overhead while 
 
 ### 🚫 No HyDE
 
-**Rationale:** *Epistemological inconsistency with RAG objectives*
+**Rationale:** *Logical contradiction in the retrieval paradigm*
 
-Hypothetical Document Embeddings (HyDE) leverage LLMs to synthesize idealized answers, subsequently retrieving semantically proximate documents. This methodology embodies a fundamental logical contradiction:
-- **If the LLM possesses domain knowledge** → Retrieval augmentation becomes obsolete
-- **If the LLM lacks domain knowledge** → Synthesized hypotheses constitute hallucinated artifacts
+Hypothetical Document Embeddings (HyDE) is a retrieval technique that works as follows: given a user query, it first uses an LLM to generate a hypothetical "ideal answer" to that query, then retrieves documents that are semantically similar to this generated answer.
 
-While HyDE demonstrates benchmark efficacy (leveraging training data overlap), it **fundamentally fails in out-of-distribution domains**—precisely the scenarios for which RAG architectures are engineered.
+**The Core Problem:** This approach contains a fundamental logical contradiction:
+
+- **Scenario A:** If the LLM already knows the correct answer (i.e., it has the domain knowledge needed to generate an accurate hypothetical answer), then why do we need retrieval at all? The LLM can answer directly—making the entire RAG pipeline redundant.
+
+- **Scenario B:** If the LLM lacks the domain knowledge (which is precisely why we use RAG), then the "hypothetical answer" it generates is essentially a hallucination—a plausible-sounding but potentially incorrect response. Using this hallucinated answer to retrieve documents is like using a wrong map to navigate: you might find documents that seem relevant, but they may not actually contain the information needed to answer the original query correctly.
+
+**Why It Fails in Practice:** While HyDE may perform well on benchmarks where test queries overlap with the LLM's training data (allowing it to generate reasonable hypothetical answers), it breaks down in real-world scenarios involving specialized domains, proprietary knowledge, or recent information—exactly the use cases where RAG systems are most valuable. In these scenarios, the LLM's hypothetical answers are unreliable, leading to retrieval failures that cascade through the entire system.
+
+**Our Approach:** We perform direct query alignment—extracting the core retrieval intent from the user's query without generating hypothetical content. This ensures that retrieval is grounded in actual user needs rather than LLM-generated artifacts.
 
 ### ⚡ Radical Simplicity
 
