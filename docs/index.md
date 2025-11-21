@@ -50,7 +50,10 @@ Our methodology is rooted in **Engineering Pragmatism** and **First Principles R
 
 Reranking stages introduce non-trivial latency and computational overhead while yielding diminishing returns. Given that downstream RAG systems invariably employ an LLM for answer synthesis, this component inherently performs context discrimination—rendering explicit reranking architecturally superfluous.
 
-**Trade-off:** We sacrifice marginal ranking precision for substantial improvements in inference throughput and operational efficiency.
+
+**Practical Considerations:** While adding a reranker module would likely yield measurable performance gains on the BRIGHT benchmark (which evaluates end-to-end retrieval accuracy), we deliberately eschew this component from a production deployment perspective. In real-world RAG applications, the downstream LLM already performs implicit ranking and filtering during answer synthesis—it naturally prioritizes relevant context and ignores irrelevant passages. An additional reranking stage introduces extra inference latency, operational complexity (model deployment, monitoring, and maintenance), and diminishing returns—the marginal accuracy improvement often does not justify the added system complexity.
+
+Our solution focuses on achieving robust retrieval performance through a single-stage dense retrieval pipeline, prioritizing operational simplicity and inference efficiency over incremental benchmark gains.
 
 ### 🚫 No HyDE
 
