@@ -111,118 +111,29 @@ Our system comprises two tightly integrated components:
 
 ## 🏆 Performance
 
-As of **November 20, 2025**, INF-X-Retriever holds the **No. 1 position** on the [BRIGHT Benchmark](https://brightbenchmark.github.io/).
+**INF-X-Retriever** achieves state-of-the-art results on the BRIGHT Benchmark (as of Dec 17, 2025).
 
 ### Overall & Category Performance
 
 | Model | **Avg ALL** | **StackExchange** | **Coding** | **Theorem-based** |
 |:---|:---:|:---:|:---:|:---:|
-| **INF-X-Retriever** | **55.0** | **55.0** | **66.0** | **47.8** |
+| **INF-X-Retriever** | **63.4** | **68.3** | **55.3** | **57.7** |
+| DIVER (v3) | 46.8 | 51.8 | 39.9 | 39.7 |
 | BGE-Reasoner-0928 | 46.4 | 52.0 | 35.3 | 40.7 |
-| DIVER (v2) | 45.8 | 52.2 | 35.3 | 38.7 |
+| LATTICE | 42.1 | 51.6 | 26.9 | 30.0 |
+| ReasonRank | 40.8 | 46.9 | 27.6 | 35.5 |
+| XDR2 | 40.3 | 47.1 | 28.5 | 32.1 |
 
 ### Detailed Results Across 12 Datasets
 
-<table>
-  <thead>
-    <tr>
-      <th rowspan="2">Model</th>
-      <th rowspan="2">Avg</th>
-      <th colspan="7" style="text-align:center; border-left: 2px solid #ccc;">StackExchange</th>
-      <th colspan="2" style="text-align:center; border-left: 2px solid #ccc;">Coding</th>
-      <th colspan="3" style="text-align:center; border-left: 2px solid #ccc;">Theorem-based</th>
-    </tr>
-    <tr>
-      <th style="border-left: 2px solid #ccc;">Bio.</th>
-      <th>Earth.</th>
-      <th>Econ.</th>
-      <th>Psy.</th>
-      <th>Rob.</th>
-      <th>Stack.</th>
-      <th>Sus.</th>
-      <th style="border-left: 2px solid #ccc;">Leet.</th>
-      <th>Pony</th>
-      <th style="border-left: 2px solid #ccc;">AoPS</th>
-      <th>TheoQ.</th>
-      <th>TheoT.</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>INF-X-Retriever</strong></td>
-      <td align="center"><strong>55.0</strong></td>
-      <td align="center" style="border-left: 2px solid #ccc;"><strong>66.1</strong></td>
-      <td align="center"><strong>62.8</strong></td>
-      <td align="center"><strong>51.8</strong></td>
-      <td align="center"><strong>61.1</strong></td>
-      <td align="center">40.6</td>
-      <td align="center"><strong>51.2</strong></td>
-      <td align="center"><strong>51.8</strong></td>
-      <td align="center" style="border-left: 2px solid #ccc;"><strong>45.4</strong></td>
-      <td align="center"><strong>86.5</strong></td>
-      <td align="center" style="border-left: 2px solid #ccc;"><strong>34.6</strong></td>
-      <td align="center"><strong>49.4</strong></td>
-      <td align="center"><strong>59.3</strong></td>
-    </tr>
-    <tr>
-      <td>BGE-Reasoner-0928</td>
-      <td align="center">46.4</td>
-      <td align="center" style="border-left: 2px solid #ccc;">68.5</td>
-      <td align="center">66.4</td>
-      <td align="center">40.6</td>
-      <td align="center">53.1</td>
-      <td align="center"><strong>43.2</strong></td>
-      <td align="center">44.1</td>
-      <td align="center">47.8</td>
-      <td align="center" style="border-left: 2px solid #ccc;">29.0</td>
-      <td align="center">41.6</td>
-      <td align="center" style="border-left: 2px solid #ccc;">17.2</td>
-      <td align="center">46.5</td>
-      <td align="center">58.3</td>
-    </tr>
-    <tr>
-      <td>DIVER (v2)</td>
-      <td align="center">45.8</td>
-      <td align="center" style="border-left: 2px solid #ccc;">68.0</td>
-      <td align="center">62.5</td>
-      <td align="center">42.0</td>
-      <td align="center">58.2</td>
-      <td align="center">41.5</td>
-      <td align="center">44.3</td>
-      <td align="center">49.2</td>
-      <td align="center" style="border-left: 2px solid #ccc;">34.8</td>
-      <td align="center">32.9</td>
-      <td align="center" style="border-left: 2px solid #ccc;">19.1</td>
-      <td align="center">44.3</td>
-      <td align="center">52.6</td>
-    </tr>
-  </tbody>
-</table>
-
----
-
-## 📥 Models
-
-We have released both components as open-source artifacts to facilitate community research and development.
-
-* **Aligner:** [🤗 inf-query-aligner](https://huggingface.co/infly/inf-query-aligner)
-* **Retriever:** [🤗 inf-retriever-v1-pro](https://huggingface.co/infly/inf-retriever-v1-pro)
-
----
-
-## 🖊️ Citation
-
-If INF-X-Retriever contributes to your research or production systems, please cite our work:
-
-```
-@misc{inf-x-retriever-2025,
-    title        = {INF-X-Retriever},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Yinghui Xu, Wei Chu, Yuan Qi},
-    year         = {2025},
-    url          = {https://yaoyichen.github.io/INF-X-Retriever},
-    publisher    = {GitHub repository}
-}
-```
+| Model | Avg | Bio. | Earth. | Econ. | Psy. | Rob. | Stack. | Sus. | Leet. | Pony | AoPS | TheoQ. | TheoT. |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **INF-X-Retriever** | **63.4** | **79.8** | **70.9** | **69.9** | **73.3** | **57.7** | **64.3** | **61.9** | **56.1** | **54.5** | **51.9** | **53.1** | **67.9** |
+| DIVER (v3) | 46.8 | 66.0 | 63.7 | 42.4 | 55.0 | 40.6 | 44.7 | 50.4 | 32.5 | 47.3 | 17.2 | 46.4 | 55.6 |
+| BGE-Reasoner-0928 | 46.4 | 68.5 | 66.4 | 40.6 | 53.1 | 43.2 | 44.1 | 47.8 | 29.0 | 41.6 | 17.2 | 46.5 | 58.3 |
+| LATTICE | 41.6 | 64.4 | 62.4 | 45.4 | 57.4 | 47.6 | 37.6 | 46.4 | 19.9 | 34.0 | 12.0 | 30.1 | 47.8 |
+| ReasonRank | 40.8 | 62.7 | 55.5 | 36.7 | 54.6 | 35.7 | 38.0 | 44.8 | 29.5 | 25.6 | 14.4 | 42.0 | 50.1 |
+| XDR2 | 40.3 | 63.1 | 55.4 | 38.5 | 52.9 | 37.1 | 38.2 | 44.6 | 21.9 | 35.0 | 15.7 | 34.4 | 45.2 |
 
 ---
 
