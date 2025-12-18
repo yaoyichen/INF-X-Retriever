@@ -10,10 +10,25 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # Define input query
-prompt = "Give me a short introduction to large language model."
+prompt = "Claim in article about why insects are attracted to light\nIn this article they are addressing the reason insects are attracted to light when they say\nHeat radiation as an attractive component is refuted by the effect of LED lighting, which supplies negligible infrared radiation yet still entraps vast numbers of insects.\nI don't see why attraction to LEDs shows they're not seeking heat. Could they for example be evolutionarily programmed to associate light with heat? So that even though they don't encounter heat near/on the LEDs they still \"expect\" to?"
+
+QUERY_WRITER_PROMPT = (
+    "For the input query, formulating a concise search query for dense retrieval by distilling the core intent from a complex user prompt and ignoring LLM instructions."
+    "The response should be less than 200 words"
+)
 messages = [
-    {"role": "system", "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."},
-    {"role": "user", "content": prompt}
+    {
+        "role": "system",
+        "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant.",
+    },
+    {
+        "role": "user",
+        "content": (
+            f"{QUERY_WRITER_PROMPT}\n\n"
+            f"**Input Query:**\n{prompt}\n"
+            f"**Your Output:**\n"
+        ),
+    },
 ]
 
 # Apply chat template
@@ -22,7 +37,12 @@ text = tokenizer.apply_chat_template(
     tokenize=False,
     add_generation_prompt=True
 )
-model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+model_inputs = tokenizer(
+    [text], 
+    truncation=True, 
+    max_length=8192, 
+    return_tensors="pt"
+).to(model.device)
 
 # Generate rewritten query
 generated_ids = model.generate(
