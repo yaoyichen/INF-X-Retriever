@@ -11,3 +11,7 @@ gritlm
 torchmetrics
 pyserini
 gensim
+InstructorEmbedding
+sentence-transformers
+datasets
+scikit-learn
