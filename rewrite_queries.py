@@ -251,7 +251,7 @@ def main():
     parser.add_argument('--data_folder_path', type=str, default='xlangai/bright', help="Path to the folder containing parquet files.")
     parser.add_argument('--model_name_or_path', type=str, default='infly/inf-query-aligner', help="HuggingFace model name or local path.")
     parser.add_argument('--batch_size', type=int, default=256, help="Inference batch size.")
-    parser.add_argument('--output_path', type=str, default="./rewrite_data/INF-X-Retriever", help="Directory to save output files.")
+    parser.add_argument('--output_path', type=str, default="./rewrite_data", help="Directory to save output files.")
     args = parser.parse_args()
 
     # Create output directory
