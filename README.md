@@ -34,6 +34,8 @@ Our system comprises two tightly integrated components:
 
 ## 🚀 Quick Start
 
+Requirements: Python 3.10, Linux/macOS recommended.
+
 ### Installation
 
 ```bash
