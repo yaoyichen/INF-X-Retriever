@@ -15,14 +15,14 @@ set -e
 MODEL_NAME="${MODEL_NAME:-inf}"
 
 # Directory for output results
-OUTPUT_DIR="${OUTPUT_DIR:-./output/INF-X-Retrieve}"
+OUTPUT_DIR="${OUTPUT_DIR:-./output/INF-X-Retriever}"
 # OUTPUT_DIR="${OUTPUT_DIR:-./output/inf-retriever-v1-pro}"
 
 # Whether to run rewrite evaluation (true/false)
 REWRITE_EVAL="${REWRITE_EVAL:-true}"
 
 # Folder containing rewrite data
-REWRITE_FOLDER="${REWRITE_FOLDER:-./rewrite_data/INF-X-Retrieve}"
+REWRITE_FOLDER="${REWRITE_FOLDER:-./rewrite_data}"
 
 # Debug mode (true/false)
 DEBUG="${DEBUG:-false}"
