@@ -1,18 +1,22 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+# Load model and tokenizer
+model_name = "infly/inf-query-aligner"
 model = AutoModelForCausalLM.from_pretrained(
-    "infly/inf-query-aligner",
+    model_name,
     torch_dtype="auto",
     device_map="auto"
 )
-tokenizer = AutoTokenizer.from_pretrained("infly/inf-query-aligner")
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
+# Define input query
 prompt = "Give me a short introduction to large language model."
 messages = [
     {"role": "system", "content": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."},
     {"role": "user", "content": prompt}
 ]
 
+# Apply chat template
 text = tokenizer.apply_chat_template(
     messages,
     tokenize=False,
@@ -20,6 +24,7 @@ text = tokenizer.apply_chat_template(
 )
 model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
 
+# Generate rewritten query
 generated_ids = model.generate(
     **model_inputs,
     max_new_tokens=512
