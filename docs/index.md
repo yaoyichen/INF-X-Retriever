@@ -162,7 +162,7 @@ If you use INF-X-Retriever in your research or products, please cite:
 
 We welcome collaboration and inquiries from researchers and practitioners interested in reasoning-intensive retrieval.
 
-Project Lead: Yichen Yao  
+Yichen Yao  
 Email: <a href="mailto:eason.yyc@inftech.ai">eason.yyc@inftech.ai</a>
 
 For technical discussions, collaborations, or deployment questions, please get in touch.
