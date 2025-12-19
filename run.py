@@ -12,9 +12,7 @@ if __name__=='__main__':
                                  'stackoverflow','sustainable_living','aops','leetcode','theoremqa_theorems',
                                  'theoremqa_questions'])
     parser.add_argument('--model', type=str, required=True,
-                        choices=['inf', 
-                                 'bm25','cohere','e5','google','grit','inst-l','inst-xl',
-                                 'openai','qwen','qwen2','sbert','sf','voyage','bge','reasonir'])
+                        choices=['inf'])
     parser.add_argument('--long_context', action='store_true')
     parser.add_argument('--query_max_length', type=int, default=-1)
     parser.add_argument('--doc_max_length', type=int, default=-1)
