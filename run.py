@@ -55,7 +55,7 @@ if __name__=='__main__':
         documents.append(dp['content'])
 
     if not os.path.isfile(score_file_path):
-        with open(os.path.join(args.config_dir,args.model,f"{args.task}.json")) as f:
+        with open(os.path.join(args.config_dir,args.model,f"prompts.json")) as f:
             config = json.load(f)
         if not os.path.isdir(args.output_dir):
             os.makedirs(args.output_dir)

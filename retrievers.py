@@ -19,7 +19,7 @@ TASK_MAP = {
 
 
 def add_instruct_concatenate(texts,task,instruction):
-    return [instruction.format(task=task)+t for t in texts]
+    return [instruction+t for t in texts]
 
 
 def last_token_pool(last_hidden_states,attention_mask):
