@@ -129,4 +129,4 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 
 ## 📬 Contact
 
-**Project Lead:** Yichen Yao ([eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai))
+Yichen Yao ([eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai))
