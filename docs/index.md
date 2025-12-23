@@ -99,7 +99,9 @@ Our system comprises two tightly integrated components:
 
 ## 📊 Performance
 
-### Overall & Category Performance
+### Short document
+
+#### Overall & Category Performance
 
 | Model | **Avg ALL** | **StackExchange** | **Coding** | **Theorem-based** |
 |:---|:---:|:---:|:---:|:---:|
@@ -110,7 +112,7 @@ Our system comprises two tightly integrated components:
 | ReasonRank | 40.8 | 46.9 | 27.6 | 35.5 |
 | XDR2 | 40.3 | 47.1 | 28.5 | 32.1 |
 
-### Detailed Results Across 12 Datasets
+#### Detailed Results Across 12 Datasets
 
 | Model | Avg | Bio. | Earth. | Econ. | Psy. | Rob. | Stack. | Sus. | Leet. | Pony | AoPS | TheoQ. | TheoT. |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -120,6 +122,15 @@ Our system comprises two tightly integrated components:
 | LATTICE | 42.1 | 64.4 | 62.4 | 45.4 | 57.4 | 47.6 | 37.6 | 46.4 | 19.9 | 34.0 | 12.0 | 30.1 | 47.8 |
 | ReasonRank | 40.8 | 62.7 | 55.5 | 36.7 | 54.6 | 35.7 | 38.0 | 44.8 | 29.5 | 25.6 | 14.4 | 42.0 | 50.1 |
 | XDR2 | 40.3 | 63.1 | 55.4 | 38.5 | 52.9 | 37.1 | 38.2 | 44.6 | 21.9 | 35.0 | 15.7 | 34.4 | 46.2 |
+
+### Long document
+
+#### Detailed Results Across 8 Datasets
+
+| Model | Avg | Bio. | Earth. | Econ. | Pony | Psy. | Rob. | Stack. | Sus. |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **INF-X-Retriever** | **54.6** | **73.2** | **59.6** | **69.3** | **12.1** | **74.3** | **55.9** | **27.8** | **64.8** |
+| inf-retriever-v1-pro | 30.5 | 44.1 | 42.2 | 31.4 | 0.4 | 43.1 | 20.8 | 21.4 | 41.0 |
 
 Notes:
 - Results reflect end-to-end retrieval accuracy on BRIGHT under the official evaluation protocol.
