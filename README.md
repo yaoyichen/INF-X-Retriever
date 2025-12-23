@@ -55,18 +55,24 @@ python rewrite_queries.py \
 
 ### 2. Evaluation
 
-To evaluate the model on supported tasks:
+To evaluate the model on supported tasks, run:
 
 ```bash
-# Run the evaluation pipeline
 ./run.sh
 ```
 
-**Configuration:**
-You can customize the execution via environment variables:
+**Configuration:**  
+The evaluation pipeline can be customized via environment variables:
 
 ```bash
-MODEL_NAME="infly/inf-retriever-v1-pro" ENCODE_BATCH_SIZE=32 REWRITE_EVAL=false ./run.sh
+# Customize evaluation settings
+MODEL_NAME="infly/inf-retriever-v1-pro" \
+ENCODE_BATCH_SIZE=32 \
+REWRITE_EVAL=false \
+./run.sh
+
+# Enable long-document testing
+LONG_CONTEXT=true ./run.sh
 ```
 
 ---
