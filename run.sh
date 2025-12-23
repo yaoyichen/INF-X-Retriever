@@ -24,6 +24,9 @@ REWRITE_EVAL="${REWRITE_EVAL:-true}"
 # Folder containing rewrite data
 REWRITE_FOLDER="${REWRITE_FOLDER:-./rewrite_data}"
 
+# Long context test (true/false)
+LONG_CONTEXT="${LONG_CONTEXT:-false}"
+
 # Debug mode (true/false)
 DEBUG="${DEBUG:-false}"
 
@@ -70,6 +73,10 @@ for TASK_NAME in "${TASKS[@]}"; do
     # Conditionally add arguments
     if [ "${REWRITE_EVAL}" = "true" ]; then
         CMD+=(--input_file "${REWRITE_FOLDER}/${TASK_NAME}_queries.json")
+    fi
+
+    if [ "${LONG_CONTEXT}" = "true" ]; then
+        CMD+=(--long_context)
     fi
 
     if [ "${DEBUG}" = "true" ]; then
