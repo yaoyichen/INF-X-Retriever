@@ -76,6 +76,7 @@ for TASK_NAME in "${TASKS[@]}"; do
     fi
 
     if [ "${LONG_CONTEXT}" = "true" ]; then
+        CMD+=(--doc_max_length "40960")
         CMD+=(--long_context)
     fi
 
