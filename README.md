@@ -82,7 +82,9 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 - **Authentic & Interdisciplinary:** By leveraging real-world data from varied professional fields, BRIGHT provides a faithful assessment of a model's generalization capabilities in specialized, high-stakes environments.
 - **Critical for RAG:** As a stress test for modern Retrieval-Augmented Generation (RAG) systems, it serves as a key indicator for performance in demanding industrial applications such as scientific research, legal analysis, and medical Q&A.
 
-### Overall & Category Performance
+### Short document
+
+#### Overall & Category Performance
 
 | Model | **Avg ALL** | **StackExchange** | **Coding** | **Theorem-based** |
 |:---|:---:|:---:|:---:|:---:|
@@ -93,7 +95,7 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 | ReasonRank | 40.8 | 46.9 | 27.6 | 35.5 |
 | XDR2 | 40.3 | 47.1 | 28.5 | 32.1 |
 
-### Detailed Results Across 12 Datasets
+#### Detailed Results Across 12 Datasets
 
 | Model | Avg | Bio. | Earth. | Econ. | Psy. | Rob. | Stack. | Sus. | Leet. | Pony | AoPS | TheoQ. | TheoT. |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -104,8 +106,18 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 | ReasonRank | 40.8 | 62.7 | 55.5 | 36.7 | 54.6 | 35.7 | 38.0 | 44.8 | 29.5 | 25.6 | 14.4 | 42.0 | 50.1 |
 | XDR2 | 40.3 | 63.1 | 55.4 | 38.5 | 52.9 | 37.1 | 38.2 | 44.6 | 21.9 | 35.0 | 15.7 | 34.4 | 46.2 |
 
----
+### Long document
 
+#### Detailed Results Across 8 Datasets
+
+| Model | Avg | Bio. | Earth. | Econ. | Pony | Psy. | Rob. | Stack. | Sus. |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **INF-X-Retriever** | **54.6** | **73.2** | **59.6** | **69.3** | **12.1** | **74.3** | **55.9** | **27.8** | **64.8** |
+| inf-retriever-v1-pro | 30.5 | 44.1 | 42.2 | 31.4 | 0.4 | 43.1 | 20.8 | 21.4 | 41.0 |
+
+
+---
+ 
 ## 📥 Models
 
 * **Aligner:** [🤗 inf-query-aligner](https://huggingface.co/infly/inf-query-aligner)
