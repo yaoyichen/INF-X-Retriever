@@ -1,7 +1,7 @@
 <h1 align="center">INF-X-Retriever</h1>
 
 <p align="center">
-  <strong>A pragmatic, general solution for reasoning-intensive retrieval</strong>
+  <strong>A Pragmatic, Production-Grade Framework for Reasoning-Intensive Retrieval</strong>
 </p>
 
 <p align="center">
@@ -13,8 +13,8 @@
 </p>
 
 <p align="center">
-  <strong>INF-X-Retriever</strong> is a production-grade dense reasoning retrieval framework developed by <strong><a href="https://inf.hk/">INF</a></strong>.<br>
-  It delivers robust retrieval performance across arbitrary task collections (X) with minimal supervision, emphasizing deployability, reliability, and reasoning depth over architectural complexity.
+  <strong>INF-X-Retriever</strong> is a high-performance dense retrieval framework developed by <strong><a href="https://inf.hk/">INF</a></strong>. <br>
+  It provides a robust solution for complex reasoning-intensive tasks across a collection of tasks (X) with minimal supervision, prioritizing <strong>architectural simplicity, deployment reliability, and deep semantic alignment</strong>.
 </p>
 
 <p align="center">
@@ -23,26 +23,23 @@
   <a href="#-architecture">Architecture</a> •
   <a href="#-performance">Performance</a> •
   <a href="#-models">Models</a> •
-  <a href="#-installation--quick-start">Installation & Quick Start</a> •
-  <a href="#-evaluation--reproducibility">Evaluation & Reproducibility</a> •
   <a href="#-citation">Citation</a> •
-  <a href="#-contact">Contact</a> •
-  <a href="https://github.com/yaoyichen/INF-X-Retriever">GitHub</a>
+  <a href="#-contact">Contact</a>
 </p>
 
 ---
 
 ## 📖 Introduction
 
-Large Language Models (LLMs) have shifted information retrieval from keyword matching to intent-aware reasoning. Modern queries often include narrative context, constraints, and formatting directives—elements that are semantically noisy for conventional retrieval systems.
+The evolution of Large Language Models (LLMs) has redefined information retrieval, shifting the paradigm from surface-level keyword matching to **intent-aware reasoning**. Modern queries in RAG (Retrieval-Augmented Generation) pipelines often contain intricate narrative contexts, logical constraints, and domain-specific directives—elements that act as "semantic noise" for conventional retrieval systems.
 
-INF-X-Retriever addresses this shift by performing intent distillation on complex queries and executing single-stage dense retrieval. The approach is validated on the BRIGHT Benchmark, which reflects realistic, reasoning-heavy retrieval scenarios.
+**INF-X-Retriever** addresses this challenge through **Intent Distillation**. By aligning complex queries into a unified semantic space and executing single-stage dense retrieval, it effectively penetrates surface-level complexity to reach core information. Our approach is validated by its **1st-place ranking on the BRIGHT Benchmark**, a rigorous evaluation suite dedicated to reasoning-heavy retrieval scenarios.
 
 ---
 
 ## 💡 Design Principles
 
-Our design emphasizes engineering practicality and first-principles reasoning. We prioritize production readiness, architectural coherence, and computational efficiency.
+Our framework is guided by engineering practicality and first-principles reasoning. We intentionally avoid architectural bloat in favor of production readiness and computational efficiency.
 
 <p align="center">
   <img src="assets/comparison.svg" alt="Pipeline Comparison" width="100%"/>
@@ -50,46 +47,36 @@ Our design emphasizes engineering practicality and first-principles reasoning. W
 
 > 🎯 **Core Principle:** *"Less is More"* — Maximal efficacy through deliberate minimalism.
 
-### ▫️ No Rerankers
+### ▫️ Single-Stage Retrieval (No Rerankers)
+While reranking stages can marginally improve accuracy, they introduce significant latency and operational overhead. In modern RAG pipelines, downstream LLMs already perform implicit context discrimination during synthesis. We demonstrate that a **high-fidelity single-stage retriever** provides the optimal balance of precision and throughput, significantly simplifying deployment and monitoring in production environments.
 
-Reranking stages add latency and operational overhead, while downstream LLMs in RAG pipelines already perform implicit context discrimination during answer synthesis. In production environments, the marginal gains from explicit reranking often do not justify the additional complexity in deployment, monitoring, and maintenance.
+### ▫️ Direct Query Alignment (No HyDE)
+Hypothetical Document Embeddings (HyDE) rely on LLMs to generate "pseudo-answers" to guide retrieval. This introduces two critical failure modes:
+1. **Redundancy**: If the LLM already knows the answer, retrieval is redundant.
+2. **Hallucination Drift**: When the LLM lacks domain knowledge (the primary use case for RAG), hypothetical answers can steer the retriever toward misleading content.
+INF-X-Retriever performs **Direct Intent Extraction**, ensuring retrieval remains grounded in the actual user requirements and source evidence.
 
-Our solution achieves robust performance via a single-stage dense retrieval pipeline, favoring operational simplicity and efficiency.
-
-### ▫️ No HyDE
-
-Hypothetical Document Embeddings (HyDE) first generate a hypothetical answer with an LLM and then retrieve documents similar to that answer. This introduces methodological risks:
-
-- When the LLM already possesses the necessary knowledge, retrieval adds little value.
-- When the LLM lacks the domain knowledge (the common case for RAG), the generated “hypothetical answer” may be unreliable, steering retrieval toward misleading content.
-
-We therefore perform direct query alignment—extracting core retrieval intent without generating hypothetical content—so that retrieval remains grounded in user requirements and source documents.
-
-### Operational Simplicity
-
-We avoid techniques that introduce fragility or unnecessary complexity:
-
-- No sparse retrieval (e.g., BM25) — eliminates hybrid fusion complexity and hyperparameter sensitivity
-- No multi-query expansion — single-pass alignment minimizes latency
-- No ensemble methods — favors robustness and maintainability
-
-Result: a system that is streamlined, latency-conscious, and transparent for diagnostics in production.
+### ▫️ Operational Simplicity
+We eliminate components that introduce fragility or hyperparameter sensitivity:
+- **No Sparse Retrieval (BM25)**: Removes the complexity of hybrid fusion and weight tuning.
+- **No Multi-Query Expansion**: Single-pass alignment minimizes tail latency.
+- **No Model Ensembles**: Ensures a transparent, maintainable, and diagnostic-friendly pipeline.
 
 ---
 
 ## 🛠️ Architecture
 
-Our system comprises two tightly integrated components:
+The framework consists of two tightly integrated, purpose-built components:
 
-### Query Aligner
-* Model: <a href="https://huggingface.co/infly/inf-query-aligner"><strong>🤗 inf-query-aligner</strong></a>
-* Method: Reinforcement Learning fine-tuning on <a href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct">Qwen2.5-7B-Instruct</a>
-* Function: Semantic intent distillation from verbally complex queries. Performs pure query alignment to extract core retrieval intent, avoiding hypothetical content generation.
+### 1. Query Aligner
+* **Model**: <a href="https://huggingface.co/infly/inf-query-aligner"><strong>🤗 inf-query-aligner</strong></a>
+* **Backbone**: Qwen2.5-7B-Instruct (Fine-tuned via Reinforcement Learning)
+* **Function**: Distills core retrieval intent from verbally complex or noisy queries. It ensures the query embedding is focused on the underlying task rather than linguistic artifacts.
 
-### Retriever
-* Model: <a href="https://huggingface.co/infly/inf-retriever-v1-pro"><strong>🤗 inf-retriever-v1-pro</strong></a>
-* Method: Continual training on the general-purpose <a href="https://huggingface.co/infly/inf-retriever-v1">inf-retriever-v1</a> backbone with targeted long-query adaptation.
-* Function: Generalized dense retrieval architecture built for cross-task transfer and stability.
+### 2. Retriever
+* **Model**: <a href="https://huggingface.co/infly/inf-retriever-v1-pro"><strong>🤗 inf-retriever-v1-pro</strong></a>
+* **Backbone**: Continual training on `inf-retriever-v1` with targeted long-query adaptation.
+* **Function**: A generalized dense retrieval architecture optimized for cross-task transfer, stability, and high-dimensional semantic mapping.
 
 <p align="center">
   <img src="assets/architecture.svg" alt="INF-X-Retriever Architecture" width="100%"/>
@@ -149,29 +136,25 @@ Notes:
 
 ## 🧪 Models
 
-- Query Aligner: <a href="https://huggingface.co/infly/inf-query-aligner"><strong>inf-query-aligner</strong></a>
-- Retriever: <a href="https://huggingface.co/infly/inf-retriever-v1-pro"><strong>inf-retriever-v1-pro</strong></a>
+Both models are released under the **Apache-2.0 License** for both research and commercial application.
 
-Both models are released under Apache-2.0 for research and production use.
-
----
-
-## 📄 License
-
-INF-X-Retriever is released under the <a href="https://opensource.org/licenses/Apache-2.0">Apache-2.0</a> License.
+| Component | Hugging Face Repository | Description |
+| :--- | :--- | :--- |
+| **Query Aligner** | [`inf-query-aligner`](https://huggingface.co/infly/inf-query-aligner) | LLM-based intent distiller. |
+| **Retriever** | [`inf-retriever-v1-pro`](https://huggingface.co/infly/inf-retriever-v1-pro) | Advanced dense embedding model. |
 
 ---
 
 ## 📝 Citation
 
-If you use INF-X-Retriever in your research or products, please cite:
+If you utilize INF-X-Retriever in your research or production systems, please cite our work:
 
 ```text
 @misc{inf-x-retriever-2025,
-    title        = {INF-X-Retriever},
+    title        = {INF-X-Retriever: A Pragmatic Framework for Reasoning-Intensive Dense Retrieval},
     author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
     year         = {2025},
-    url          = {https://yaoyichen.github.io/INF-X-Retriever},
+    url          = {[https://github.com/yaoyichen/INF-X-Retriever](https://github.com/yaoyichen/INF-X-Retriever)},
     publisher    = {GitHub repository}
 }
 ```
@@ -180,8 +163,13 @@ If you use INF-X-Retriever in your research or products, please cite:
 
 ## 📬 Contact
 
-We welcome collaboration and inquiries from researchers and practitioners interested in reasoning-intensive retrieval.
+We welcome inquiries regarding technical deep-dives, strategic collaborations, or large-scale deployment support. Our team is committed to advancing the boundaries of reasoning-intensive retrieval.
 
-Email: <a href="mailto:eason.yyc@inftech.ai">eason.yyc@inftech.ai</a>
+* **Primary Contact**: [eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai)
+* **Organization**: [INF](https://inf.hk/)
+* **Issue Tracking**: For bug reports or feature requests, please use the [GitHub Issues](https://github.com/yaoyichen/INF-X-Retriever/issues) portal.
 
-For technical discussions, collaborations, or deployment questions, please get in touch.
+<p align="center">
+  <br>
+  <strong>Built with precision by the INF Team.</strong>
+</p>
