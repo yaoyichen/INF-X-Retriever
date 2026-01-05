@@ -13,7 +13,7 @@
 
 ## 📖 Overview
 
-**INF-X-Retriever** is a production-grade dense retrieval framework designed to handle the complex, reasoning-intensive queries of the LLM era. Rooted in **engineering pragmatism**, it eschews complex multi-stage pipelines (like Rerankers or HyDE) in favor of a streamlined **Query Aligner + Dense Retriever** architecture. This "less is more" approach prioritizes low latency and robust cross-task transferability, currently holding the **No. 1 position** on the [BRIGHT Benchmark](https://brightbenchmark.github.io/) (as of Dec 17, 2025).
+**INF-X-Retriever** is a production-grade dense retrieval framework designed to handle the complex, reasoning-intensive queries of the LLM era. Rooted in **engineering pragmatism**, it eschews complex multi-stage pipelines (like Rerankers or HyDE) in favor of a streamlined **Query Aligner + Dense Retriever** architecture. This "less is more" approach prioritizes low latency and robust cross-task transferability, currently holding the **No. 1 position** on the [BRIGHT Benchmark](https://brightbenchmark.github.io/) (as of Dec 20, 2025).
 
 For a deep dive into our design philosophy and methodology, please refer to our [Documentation](docs/index.md).
 
