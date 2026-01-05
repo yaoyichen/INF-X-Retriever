@@ -79,7 +79,7 @@ LONG_CONTEXT=true ./run.sh
 
 ## 🏆 Performance
 
-**INF-X-Retriever** achieves state-of-the-art results on the [BRIGHT Benchmark](https://brightbenchmark.github.io/) (as of Dec 17, 2025).
+**INF-X-Retriever** achieves state-of-the-art results on the [BRIGHT Benchmark](https://brightbenchmark.github.io/) (as of Dec 20, 2025).
 
 The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous text retrieval benchmark designed to evaluate the capability of retrieval models in handling questions that require intensive reasoning and cross-document synthesis. Collected from real-world sources such as StackExchange, competitive programming platforms, and mathematical competitions, it comprises complex queries spanning diverse domains like mathematics, coding, biology, economics, and robotics.
 
@@ -147,4 +147,4 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 
 ## 📬 Contact
 
-Yichen Yao ([eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai))
+Email: [eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai)
