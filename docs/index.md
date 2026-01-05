@@ -99,6 +99,15 @@ Our system comprises two tightly integrated components:
 
 ## 📊 Performance
 
+**INF-X-Retriever** achieves state-of-the-art results on the [BRIGHT Benchmark](https://brightbenchmark.github.io/) (as of Dec 20, 2025).
+
+The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous text retrieval benchmark designed to evaluate the capability of retrieval models in handling questions that require intensive reasoning and cross-document synthesis. Collected from real-world sources such as StackExchange, competitive programming platforms, and mathematical competitions, it comprises complex queries spanning diverse domains like mathematics, coding, biology, economics, and robotics.
+
+**Why BRIGHT Matters:**
+- **High Reasoning Complexity:** Unlike traditional keyword-centric benchmarks, BRIGHT queries often demand multi-step reasoning, evidence aggregation across documents, and theoretical mapping. This effectively exposes the limitations of standard models in complex "understanding + retrieval" tasks.
+- **Authentic & Interdisciplinary:** By leveraging real-world data from varied professional fields, BRIGHT provides a faithful assessment of a model's generalization capabilities in specialized, high-stakes environments.
+- **Critical for RAG:** As a stress test for modern Retrieval-Augmented Generation (RAG) systems, it serves as a key indicator for performance in demanding industrial applications such as scientific research, legal analysis, and medical Q&A.
+
 ### Short document
 
 #### Overall & Category Performance
@@ -160,7 +169,7 @@ If you use INF-X-Retriever in your research or products, please cite:
 ```text
 @misc{inf-x-retriever-2025,
     title        = {INF-X-Retriever},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Yuan Qi},
+    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
     year         = {2025},
     url          = {https://yaoyichen.github.io/INF-X-Retriever},
     publisher    = {GitHub repository}
@@ -173,7 +182,6 @@ If you use INF-X-Retriever in your research or products, please cite:
 
 We welcome collaboration and inquiries from researchers and practitioners interested in reasoning-intensive retrieval.
 
-Yichen Yao  
 Email: <a href="mailto:eason.yyc@inftech.ai">eason.yyc@inftech.ai</a>
 
 For technical discussions, collaborations, or deployment questions, please get in touch.
