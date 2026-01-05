@@ -136,7 +136,7 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 ```text
 @misc{inf-x-retriever-2025,
     title        = {INF-X-Retriever},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Yuan Qi},
+    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
     year         = {2025},
     url          = {https://yaoyichen.github.io/INF-X-Retriever},
     publisher    = {GitHub repository}
