@@ -165,7 +165,7 @@ If you utilize INF-X-Retriever in your research or production systems, please ci
 
 We welcome inquiries regarding technical deep-dives, strategic collaborations, or large-scale deployment support. Our team is committed to advancing the boundaries of reasoning-intensive retrieval.
 
-* **Primary Contact**: [eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai)
+* **Contact**: [eason.yyc@inftech.ai](mailto:eason.yyc@inftech.ai)
 * **Organization**: [INF](https://inf.hk/)
 * **Issue Tracking**: For bug reports or feature requests, please use the [GitHub Issues](https://github.com/yaoyichen/INF-X-Retriever/issues) portal.
 
