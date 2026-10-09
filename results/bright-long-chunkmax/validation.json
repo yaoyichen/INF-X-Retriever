@@ -1,0 +1,90 @@
+{
+  "track": "BRIGHT long document",
+  "metric": "macro-average Recall@1 x 100",
+  "dataset": "xlangai/bright",
+  "dataset_revision": "3066d29c9651a576c8aba4832d249807b181ecae",
+  "status": "locally validated; not an official leaderboard acceptance",
+  "tasks": {
+    "biology": {
+      "queries": 103,
+      "documents": 524,
+      "queries_with_multiple_gold_documents": 24,
+      "Recall@1": 0.76133,
+      "Recall@1_unrounded": 0.761326860841424,
+      "score_sha256": "7446de7f74fe55ba5c3a90041b164ca263b6761e0f75a4238070af36029c1e99",
+      "examples_fingerprint": "8603e3777e41838a",
+      "corpus_fingerprint": "8f23b248de08fd37"
+    },
+    "earth_science": {
+      "queries": 116,
+      "documents": 601,
+      "queries_with_multiple_gold_documents": 53,
+      "Recall@1": 0.60991,
+      "Recall@1_unrounded": 0.6099137931034483,
+      "score_sha256": "6beebac480ae8b72e0f0e7692dd58be7f5c4cb967294be01232bd426eb2faa03",
+      "examples_fingerprint": "9b0fdc7997c93cb6",
+      "corpus_fingerprint": "d2c2672eba3d78f4"
+    },
+    "economics": {
+      "queries": 103,
+      "documents": 516,
+      "queries_with_multiple_gold_documents": 5,
+      "Recall@1": 0.73139,
+      "Recall@1_unrounded": 0.7313915857605178,
+      "score_sha256": "3f4cd5cf3883c34aaec7cc44c2c85908c916451ff6a6e55bb79573ac6acc980f",
+      "examples_fingerprint": "ca504077fccae5f3",
+      "corpus_fingerprint": "404c1387d0b31f01"
+    },
+    "pony": {
+      "queries": 112,
+      "documents": 577,
+      "queries_with_multiple_gold_documents": 111,
+      "Recall@1": 0.11782,
+      "Recall@1_unrounded": 0.11782203411667698,
+      "score_sha256": "8ec03e3651d281eea08d0a2fcce03530d962fce5592dc940fedf243333b254a6",
+      "examples_fingerprint": "17d31ee105393c15",
+      "corpus_fingerprint": "c0496fe9d558ef09"
+    },
+    "psychology": {
+      "queries": 101,
+      "documents": 512,
+      "queries_with_multiple_gold_documents": 11,
+      "Recall@1": 0.81221,
+      "Recall@1_unrounded": 0.8122112211221122,
+      "score_sha256": "88a83d83ec5c5fae5f8c87479a9cd304938188102919775849fd24a927e5e093",
+      "examples_fingerprint": "74569acaa62df388",
+      "corpus_fingerprint": "22748b43e215822f"
+    },
+    "robotics": {
+      "queries": 101,
+      "documents": 508,
+      "queries_with_multiple_gold_documents": 5,
+      "Recall@1": 0.57921,
+      "Recall@1_unrounded": 0.5792079207920792,
+      "score_sha256": "7e54e190d0617b736088f23aae7a17a112cd64a15e8545d29a7e6a186b80749e",
+      "examples_fingerprint": "6f1ec32da15a572d",
+      "corpus_fingerprint": "ac3aac430379f21c"
+    },
+    "stackoverflow": {
+      "queries": 117,
+      "documents": 1858,
+      "queries_with_multiple_gold_documents": 12,
+      "Recall@1": 0.53419,
+      "Recall@1_unrounded": 0.5341880341880342,
+      "score_sha256": "9e45e859315bd570fd2ff30ebbca248f3ab4285c8bcf10eddf9e58ce1cec6223",
+      "examples_fingerprint": "f0a50f3b858faacd",
+      "corpus_fingerprint": "da0c540d677e1922"
+    },
+    "sustainable_living": {
+      "queries": 108,
+      "documents": 554,
+      "queries_with_multiple_gold_documents": 15,
+      "Recall@1": 0.73102,
+      "Recall@1_unrounded": 0.7310185185185185,
+      "score_sha256": "486a7f398d5724c9cdb9404c43f8e7c1986dc4ea7fb454a6c2feb5f35b94876a",
+      "examples_fingerprint": "1e7641d60c241e72",
+      "corpus_fingerprint": "387dc7ee4e3d5964"
+    }
+  },
+  "average_recall_at_1_percent": 60.9635
+}
