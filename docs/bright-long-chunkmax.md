@@ -69,6 +69,7 @@ trusting labels copied into rewritten query files.
 
 ```bash
 pip install -r requirements.txt
+MODEL_NAME=inf REWRITE_EVAL=true \
 LONG_CONTEXT=true CHUNK_CHARS=20000 \
 DOC_MAX_LENGTH=8192 QUERY_MAX_LENGTH=8192 ENCODE_BATCH_SIZE=1 \
 OUTPUT_DIR=./output/INF-X-Retriever-chunkmax ./run.sh

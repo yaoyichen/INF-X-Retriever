@@ -53,7 +53,7 @@ python rewrite_queries.py \
     --output_path ./rewrite_data
 ```
 
-### 2. Evaluation
+### 2. Short-document evaluation
 
 To evaluate the model on supported tasks, run:
 
@@ -65,15 +65,34 @@ To evaluate the model on supported tasks, run:
 The evaluation pipeline can be customized via environment variables:
 
 ```bash
-# Customize evaluation settings
-MODEL_NAME="infly/inf-retriever-v1-pro" \
+# Use the supported retriever backend name ("inf"), not a checkpoint path.
+MODEL_NAME=inf \
 ENCODE_BATCH_SIZE=32 \
 REWRITE_EVAL=false \
 ./run.sh
-
-# Enable long-document testing
-LONG_CONTEXT=true ./run.sh
 ```
+
+### 3. Long-document evaluation (Chunk-Max)
+
+To run the **Chunk-Max configuration** described in the new long-document
+result, reuse the released query rewrites and explicitly enable chunking:
+
+```bash
+MODEL_NAME=inf REWRITE_EVAL=true \
+LONG_CONTEXT=true CHUNK_CHARS=20000 \
+DOC_MAX_LENGTH=8192 QUERY_MAX_LENGTH=8192 ENCODE_BATCH_SIZE=1 \
+OUTPUT_DIR=./output/INF-X-Retriever-chunkmax ./run.sh
+```
+
+This runs only the **eight long-document tasks**, without Wiki or reranking,
+and writes to a separate output directory. Use a fresh output directory for
+each new experiment. `LONG_CONTEXT=true` alone retains the legacy truncation
+configuration (`CHUNK_CHARS=0`); it does **not** enable Chunk-Max.
+
+The published **60.96** score was measured with the internal serving
+configuration; this public local-model command has not been verified to
+produce identical scores. See [the method and reproduction notes](docs/bright-long-chunkmax.md)
+or [download and validate the frozen scores without a GPU](results/bright-long-chunkmax/README.md).
 
 ---
 

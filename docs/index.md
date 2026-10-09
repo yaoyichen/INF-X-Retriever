@@ -148,6 +148,21 @@ Return only original document IDs after applying `excluded_ids`.
 Character chunks are not guaranteed to fit the token cap; tokenization can still
 truncate individual chunks. No new training or query expansion is introduced.
 
+#### Quick start: run the Chunk-Max configuration
+
+From the repository root, after installing `requirements.txt`:
+
+```bash
+MODEL_NAME=inf REWRITE_EVAL=true \
+LONG_CONTEXT=true CHUNK_CHARS=20000 \
+DOC_MAX_LENGTH=8192 QUERY_MAX_LENGTH=8192 ENCODE_BATCH_SIZE=1 \
+OUTPUT_DIR=./output/INF-X-Retriever-chunkmax ./run.sh
+```
+
+This runs the eight long-document tasks and writes to a separate output
+directory. A GPU is required for local-model inference. `LONG_CONTEXT=true`
+alone uses legacy truncation, **not** Chunk-Max.
+
 The validated result was produced by the internal `inf-retriever-v1-pro` serving
 configuration; the public local-model runner now supports the same chunk-max
 algorithm, but has **not** been rerun end to end to establish score parity.
