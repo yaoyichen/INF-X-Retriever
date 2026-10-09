@@ -197,7 +197,7 @@ If you utilize INF-X-Retriever in your research or production systems, please ci
 ```text
 @misc{inf-x-retriever-2025,
     title        = {INF-X-Retriever: A Pragmatic Framework for Reasoning-Intensive Dense Retrieval},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
+    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Yinghua Hong, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
     year         = {2025},
     url          = {[https://github.com/yaoyichen/INF-X-Retriever](https://github.com/yaoyichen/INF-X-Retriever)},
     publisher    = {GitHub repository}
