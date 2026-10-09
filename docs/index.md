@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://brightbenchmark.github.io/"><img src="https://img.shields.io/badge/BRIGHT_Benchmark-Rank_1st-8A2BE2" alt="Rank"></a>
+  <a href="https://brightbenchmark.github.io/"><img src="https://img.shields.io/badge/BRIGHT-Long_60.96_self--reported-8A2BE2" alt="BRIGHT long-document: 60.96, self-reported"></a>
   <a href="https://huggingface.co/infly/inf-query-aligner"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-INF--Query--Aligner-blue" alt="Hugging Face"></a>
   <a href="https://huggingface.co/infly/inf-retriever-v1-pro"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-INF--Retriever-yellow" alt="Hugging Face"></a>
   <a href="https://github.com/yaoyichen/INF-X-Retriever"><img src="https://img.shields.io/badge/GitHub-Repo-black?logo=github" alt="GitHub Repo"></a>
@@ -33,7 +33,7 @@
 
 The evolution of Large Language Models (LLMs) has redefined information retrieval, shifting the paradigm from surface-level keyword matching to **intent-aware reasoning**. Modern queries in RAG (Retrieval-Augmented Generation) pipelines often contain intricate narrative contexts, logical constraints, and domain-specific directives—elements that act as "semantic noise" for conventional retrieval systems.
 
-**INF-X-Retriever** addresses this challenge through **Intent Distillation**. By aligning complex queries into a unified semantic space and executing single-stage dense retrieval, it effectively penetrates surface-level complexity to reach core information. Our approach is validated by its **1st-place ranking on the BRIGHT Benchmark**, a rigorous evaluation suite dedicated to reasoning-heavy retrieval scenarios.
+**INF-X-Retriever** addresses this challenge through **Intent Distillation**. By aligning complex queries into a unified semantic space and executing single-stage dense retrieval, it effectively penetrates surface-level complexity to reach core information. Our approach is evaluated on the **BRIGHT Benchmark**, a rigorous evaluation suite dedicated to reasoning-heavy retrieval scenarios. The new long-document result is **60.96 Recall@1**, self-reported and pending submission as of October 9, 2026; it is not an official rank claim.
 
 ---
 
@@ -86,9 +86,9 @@ The framework consists of two tightly integrated, purpose-built components:
 
 ## 📊 Performance
 
-**INF-X-Retriever** achieves state-of-the-art results on the [BRIGHT Benchmark](https://brightbenchmark.github.io/) (as of Dec 20, 2025).
+The short-document tables below are a **historical December 20, 2025 snapshot**, not a current ranking. The long-document section adds the **October 9, 2026 locally validated Chunk-Max result**, pending official submission and acceptance.
 
-The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous text retrieval benchmark designed to evaluate the capability of retrieval models in handling questions that require intensive reasoning and cross-document synthesis. Collected from real-world sources such as StackExchange, competitive programming platforms, and mathematical competitions, it comprises complex queries spanning diverse domains like mathematics, coding, biology, economics, and robotics.
+**BRIGHT** is a rigorous text retrieval benchmark designed to evaluate the capability of retrieval models in handling questions that require intensive reasoning and cross-document synthesis. Collected from real-world sources such as StackExchange, competitive programming platforms, and mathematical competitions, it comprises complex queries spanning diverse domains like mathematics, coding, biology, economics, and robotics.
 
 **Why BRIGHT Matters:**
 - **High Reasoning Complexity:** Unlike traditional keyword-centric benchmarks, BRIGHT queries often demand multi-step reasoning, evidence aggregation across documents, and theoretical mapping. This effectively exposes the limitations of standard models in complex "understanding + retrieval" tasks.
@@ -121,12 +121,57 @@ The **BRIGHT** (Benchmark for Reasoning-Intensive Grounded HT) is a rigorous tex
 
 ### Long document
 
+**Metric:** macro-average document-level Recall@1 × 100 across all eight tasks.
+**Update (October 9, 2026):** the frozen Chunk-Max score files were independently
+re-evaluated against the official `gold_ids_long`: **60.9635 → 60.96**.
+All **861 queries** are covered; document IDs and per-query exclusions pass validation.
+This is a **self-reported result, not yet submitted or accepted by the leaderboard**.
+The previously published 54.6 result is retained for comparison.
+
+**Reproducibility:** [Method](https://github.com/yaoyichen/INF-X-Retriever/blob/5575f6c376bb0aa0bb304578ae11c8e8b6f7529f/docs/bright-long-chunkmax.md) · [Download all eight score files (ZIP)](https://raw.githubusercontent.com/yaoyichen/INF-X-Retriever/54af35d78d244bbd05863349c65e9ac102557cc9/results/bright-long-chunkmax/bright-long-chunkmax-20261009.zip) · [Validation report](https://github.com/yaoyichen/INF-X-Retriever/blob/54af35d78d244bbd05863349c65e9ac102557cc9/results/bright-long-chunkmax/validation.json) · [SHA-256](https://github.com/yaoyichen/INF-X-Retriever/blob/54af35d78d244bbd05863349c65e9ac102557cc9/results/bright-long-chunkmax/SHA256SUMS)
+
+
 #### Detailed Results Across 8 Datasets
 
 | Model | Avg | Bio. | Earth. | Econ. | Pony | Psy. | Rob. | Stack. | Sus. |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **INF-X-Retriever** | **54.6** | **73.2** | **59.6** | **69.3** | **12.1** | **74.3** | **55.9** | **27.8** | **64.8** |
+| **INF-X-Retriever + Chunk-Max (self-reported; pending submission)** | **60.96** | **76.13** | **60.99** | **73.14** | **11.78** | **81.22** | **57.92** | **53.42** | **73.10** |
+| INF-X-Retriever (previously published, truncation) | **54.6** | **73.2** | **59.6** | **69.3** | **12.1** | **74.3** | **55.9** | **27.8** | **64.8** |
 | inf-retriever-v1-pro | 30.5 | 44.1 | 42.2 | 31.4 | 0.4 | 43.1 | 20.8 | 21.4 | 41.0 |
+
+#### Long-document method: Chunk-Max (no reranker, no Wiki)
+
+Reuse the released query-aligner rewrites, split each document into contiguous
+**20,000-character chunks**, embed each chunk with an **8,192-token cap**, and use
+its maximum query–chunk cosine similarity as the original document's score.
+Return only original document IDs after applying `excluded_ids`.
+Character chunks are not guaranteed to fit the token cap; tokenization can still
+truncate individual chunks. No new training or query expansion is introduced.
+
+#### Quick start: run the Chunk-Max configuration
+
+From the repository root, after installing `requirements.txt`:
+
+```bash
+MODEL_NAME=inf REWRITE_EVAL=true \
+LONG_CONTEXT=true CHUNK_CHARS=20000 \
+DOC_MAX_LENGTH=8192 QUERY_MAX_LENGTH=8192 ENCODE_BATCH_SIZE=1 \
+OUTPUT_DIR=./output/INF-X-Retriever-chunkmax ./run.sh
+```
+
+This runs the eight long-document tasks and writes to a separate output
+directory. A GPU is required for local-model inference. `LONG_CONTEXT=true`
+alone uses legacy truncation, **not** Chunk-Max.
+
+The validated result was produced by the internal `inf-retriever-v1-pro` serving
+configuration; the public local-model runner now supports the same chunk-max
+algorithm, but has **not** been rerun end to end to establish score parity.
+The separate experimental Wiki variant scored 61.07 (+0.11 points), but is not
+part of this primary submission or the public runner.
+
+See [method, validation, and reproduction](https://github.com/yaoyichen/INF-X-Retriever/blob/5575f6c376bb0aa0bb304578ae11c8e8b6f7529f/docs/bright-long-chunkmax.md) for the frozen dataset
+revision, score checksums, inference differences, and commands.
+
 
 Notes:
 - Results reflect end-to-end retrieval accuracy on BRIGHT under the official evaluation protocol.

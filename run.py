@@ -4,6 +4,7 @@ import json
 from tqdm import tqdm
 from retrievers import RETRIEVAL_FUNCS,calculate_retrieval_metrics
 from datasets import load_dataset
+from long_document import LONG_TASKS
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
@@ -14,6 +15,9 @@ if __name__=='__main__':
     parser.add_argument('--model', type=str, required=True,
                         choices=['inf'])
     parser.add_argument('--long_context', action='store_true')
+    parser.add_argument('--chunk_chars', type=int, default=0,
+                        help='Long track only: character chunks, max-pooled to document IDs')
+    parser.add_argument('--dataset_revision', default='3066d29c9651a576c8aba4832d249807b181ecae')
     parser.add_argument('--query_max_length', type=int, default=-1)
     parser.add_argument('--doc_max_length', type=int, default=-1)
     parser.add_argument('--encode_batch_size', type=int, default=-1)
@@ -27,7 +31,13 @@ if __name__=='__main__':
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--ignore_cache', action='store_true')
     args = parser.parse_args()
+    if args.chunk_chars < 0 or (args.chunk_chars and not args.long_context):
+        parser.error('--chunk_chars must be nonnegative and requires --long_context')
+    if args.long_context and args.task not in LONG_TASKS:
+        parser.error('The long-document track contains only eight tasks')
     args.output_dir = os.path.join(args.output_dir,f"{args.task}_{args.model}_long_{args.long_context}")
+    if args.chunk_chars:
+        args.output_dir += f"_chunk{args.chunk_chars}"
     if not os.path.isdir(args.output_dir):
         os.makedirs(args.output_dir)
     else:
@@ -41,13 +51,13 @@ if __name__=='__main__':
         with open(args.input_file) as f:
             examples = json.load(f)
     elif args.reasoning is not None:
-        examples = load_dataset('xlangai/bright', f"{args.reasoning}_reason", cache_dir=args.cache_dir)[args.task]
+        examples = load_dataset('xlangai/bright', f"{args.reasoning}_reason", cache_dir=args.cache_dir, revision=args.dataset_revision)[args.task]
     else:
-        examples = load_dataset('xlangai/bright', 'examples',cache_dir=args.cache_dir)[args.task]
+        examples = load_dataset('xlangai/bright', 'examples',cache_dir=args.cache_dir, revision=args.dataset_revision)[args.task]
     if args.long_context:
-        doc_pairs = load_dataset('xlangai/bright', 'long_documents',cache_dir=args.cache_dir)[args.task]
+        doc_pairs = load_dataset('xlangai/bright', 'long_documents',cache_dir=args.cache_dir, revision=args.dataset_revision)[args.task]
     else:
-        doc_pairs = load_dataset('xlangai/bright', 'documents',cache_dir=args.cache_dir)[args.task]
+        doc_pairs = load_dataset('xlangai/bright', 'documents',cache_dir=args.cache_dir, revision=args.dataset_revision)[args.task]
     doc_ids = []
     documents = []
     for dp in doc_pairs:
@@ -88,9 +98,9 @@ if __name__=='__main__':
             documents = documents[:30]
             doc_ids = doc_ids[:30]
 
-        kwargs = {}
+        kwargs = {'chunk_chars': args.chunk_chars}
         if args.query_max_length>0:
-            kwargs = {'query_max_length': args.query_max_length}
+            kwargs.update({'query_max_length': args.query_max_length})
         if args.doc_max_length>0:
             kwargs.update({'doc_max_length': args.doc_max_length})
         if args.encode_batch_size>0:

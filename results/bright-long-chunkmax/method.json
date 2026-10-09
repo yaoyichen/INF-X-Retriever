@@ -1,0 +1,25 @@
+{
+  "configuration": "INF-X-Retriever + Chunk-Max (no Wiki, no reranker)",
+  "validated_on": "2026-10-09",
+  "score_generation": "September 2026; existing scores, not a new October inference run",
+  "dataset_revision": "3066d29c9651a576c8aba4832d249807b181ecae",
+  "chunk_chars": 20000,
+  "chunk_overlap_chars": 0,
+  "doc_max_length_cap": 8192,
+  "query_max_length_cap": 8192,
+  "score_pooling": "max over chunk cosine similarities, multiplied by 100",
+  "embedding_config_fingerprint": "ddc36b5c898f9fa2bbad73051b624c52fd1d77855f71e05cf96bb2e5f8328d01",
+  "query_prefix_hash": "df4b2898bf22e00bacddddd489243a3f8793730e38b842ec10161cebd94d36d6",
+  "source_public_commit": "3b47f4e70dd3a764a2999b84a0e0a6f19f7d28dd",
+  "rewrite_file_sha256": {
+    "biology": "05a94672a491b7a6997b5b199eb5304557a2349258d4ef53011d49a042d1e220",
+    "earth_science": "b4899f06e461042edceb96fc83aa838ecaff3f793b83c0cac9ee8bd398f732c9",
+    "economics": "6e1850ac85c432d0a4e290d1c2a93aba7046a8fedcbe766f1e57a282495cc13a",
+    "pony": "34c588e857b0e61bad8e5d624cb6536b203c60a400f09bd058a9cdcb0e28fb5d",
+    "psychology": "06c16de48feab1a6f0f6ec6e9c64ae9bfcc348e45948605bb19d97a87da0ce54",
+    "robotics": "f62e936621eb8fa348208e301bf1ede6347b7273a67a1477cd83b1b516e994c8",
+    "stackoverflow": "e1519053a44b5db65aebbd13c6302fd4b69f382dc0b16268bda8f753a900f0d7",
+    "sustainable_living": "e067083236d4f022eb092530b9bc55df9f35dd1faae16881e70187566002f045"
+  },
+  "public_local_inference_parity": "not yet tested end to end"
+}
