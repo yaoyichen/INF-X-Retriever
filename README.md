@@ -185,7 +185,7 @@ revision, score checksums, inference differences, and commands.
 ```text
 @misc{inf-x-retriever-2025,
     title        = {INF-X-Retriever},
-    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
+    author       = {Yichen Yao, Jiahe Wan, Yuxin Hong, Mengna Zhang, Junhan Yang, Zhouyu Jiang, Yinghua Hong, Qing Xu, Kuan Lu, Yinghui Xu, Wei Chu, Emma Wang, Yuan Qi},
     year         = {2025},
     url          = {https://yaoyichen.github.io/INF-X-Retriever},
     publisher    = {GitHub repository}
