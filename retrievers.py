@@ -5,6 +5,7 @@ import pytrec_eval
 from tqdm import tqdm,trange
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModel
+from long_document import chunk_documents, corpus_cache_key, pool_to_documents
 
 
 TASK_MAP = {
@@ -43,7 +44,7 @@ def get_scores(query_ids,doc_ids,scores,excluded_ids):
             cur_scores[str(did)] = s
         for did in set(excluded_ids[str(query_id)]):
             if did!="N/A":
-                cur_scores.pop(did)
+                cur_scores.pop(did, None)
         cur_scores = sorted(cur_scores.items(),key=lambda x:x[1],reverse=True)[:1000]
         emb_scores[str(query_id)] = {}
         for pair in cur_scores:
@@ -53,9 +54,10 @@ def get_scores(query_ids,doc_ids,scores,excluded_ids):
 
 @torch.no_grad()
 def retrieval_inf(queries,query_ids,documents,doc_ids,task,model_id,instructions,cache_dir,excluded_ids,long_context,**kwargs):
+    checkpoint = kwargs.get('checkpoint') or 'infly/inf-retriever-v1-pro'
     if model_id=='inf':
-        tokenizer = AutoTokenizer.from_pretrained('infly/inf-retriever-v1-pro', trust_remote_code=True)
-        model = AutoModel.from_pretrained('infly/inf-retriever-v1-pro', device_map="auto", trust_remote_code=True).eval()
+        tokenizer = AutoTokenizer.from_pretrained(checkpoint, trust_remote_code=True)
+        model = AutoModel.from_pretrained(checkpoint, device_map="auto", trust_remote_code=True).eval()
         max_length = kwargs.get('doc_max_length',8192)
     else:
         raise ValueError(f"The model {model_id} is not supported")
@@ -63,14 +65,26 @@ def retrieval_inf(queries,query_ids,documents,doc_ids,task,model_id,instructions
     model = model.eval()
     queries = add_instruct_concatenate(texts=queries,task=task,instruction=instructions['query'])
     batch_size = kwargs.get('encode_batch_size',1)
+    chunk_chars = kwargs.get('chunk_chars', 0)
+    if chunk_chars < 0 or (chunk_chars and not long_context):
+        raise ValueError("Positive chunk_chars requires long_context")
+    cache_key = corpus_cache_key(
+        doc_ids, documents, checkpoint=checkpoint, max_length=max_length,
+        chunk_chars=chunk_chars, long_context=long_context,
+        model_revision=getattr(model.config, '_commit_hash', None))
+    chunk_owners = None
+    if chunk_chars:
+        documents, chunk_owners = chunk_documents(documents, chunk_chars)
 
     cpu_emb_list = []
     doc_emb = None
-    cache_path = os.path.join(cache_dir, 'doc_emb', model_id, task, f"long_{long_context}_{batch_size}.npy")
+    cache_path = os.path.join(cache_dir, 'doc_emb', model_id, task, f"{cache_key}_{batch_size}.npy")
     os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-    if os.path.isfile(cache_path):
+    if os.path.isfile(cache_path) and not kwargs.get('ignore_cache', False):
         try:
             doc_emb = np.load(cache_path, allow_pickle=False)
+            if doc_emb.ndim != 2 or doc_emb.shape[0] != len(documents):
+                doc_emb = None
         except Exception as e:
             print(f"Warning: failed to load existing cache ({cache_path}): {e}. Will recompute from start.")
             doc_emb = None
@@ -80,7 +94,7 @@ def retrieval_inf(queries,query_ids,documents,doc_ids,task,model_id,instructions
         if doc_emb is not None and doc_emb.shape[0] > start_idx:
             continue
 
-        batch_dict = tokenizer(documents[start_idx:start_idx+batch_size], max_length=max_length, padding=True, truncation=True, return_tensors='pt')
+        batch_dict = tokenizer(documents[start_idx:start_idx+batch_size], max_length=max_length, padding=True, truncation=True, return_tensors='pt').to(model.device)
         outputs = model(**batch_dict)
         embeddings = last_token_pool(outputs.last_hidden_state, batch_dict['attention_mask']).cpu()
         cpu_emb_list.append(embeddings.detach().cpu().numpy())
@@ -98,16 +112,20 @@ def retrieval_inf(queries,query_ids,documents,doc_ids,task,model_id,instructions
     doc_emb = F.normalize(doc_emb, p=2, dim=1)
     query_emb = []
     for start_idx in trange(0, len(queries), batch_size):
-        batch_dict = tokenizer(queries[start_idx:start_idx + batch_size], max_length=max_length, padding=True,
-                               truncation=True, return_tensors='pt')
+        batch_dict = tokenizer(queries[start_idx:start_idx + batch_size], max_length=kwargs.get('query_max_length', max_length), padding=True,
+                               truncation=True, return_tensors='pt').to(model.device)
         outputs = model(**batch_dict)
         embeddings = last_token_pool(outputs.last_hidden_state, batch_dict['attention_mask']).cpu().tolist()
         query_emb += embeddings
     query_emb = torch.tensor(query_emb)
     print("query_emb shape:", query_emb.shape)
     query_emb = F.normalize(query_emb, p=2, dim=1)
-    scores = (query_emb @ doc_emb.T) * 100
-    scores = scores.tolist()
+    scores = []
+    for start in range(0, len(query_emb), 128):
+        block = (query_emb[start:start + 128] @ doc_emb.T).numpy()
+        if chunk_owners is not None:
+            block = pool_to_documents(block, chunk_owners, len(doc_ids))
+        scores.extend((block * 100).tolist())
     return get_scores(query_ids=query_ids,doc_ids=doc_ids,scores=scores,excluded_ids=excluded_ids)
 
 

@@ -26,6 +26,8 @@ REWRITE_FOLDER="${REWRITE_FOLDER:-./rewrite_data}"
 
 # Long context test (true/false)
 LONG_CONTEXT="${LONG_CONTEXT:-false}"
+CHUNK_CHARS="${CHUNK_CHARS:-0}"
+QUERY_MAX_LENGTH="${QUERY_MAX_LENGTH:-8192}"
 
 # Debug mode (true/false)
 DEBUG="${DEBUG:-false}"
@@ -48,6 +50,12 @@ TASKS=(
     "theoremqa_theorems"
     "theoremqa_questions"
 )
+if [ "${LONG_CONTEXT}" = "true" ]; then
+    TASKS=("${TASKS[@]:0:8}")
+elif [ "${CHUNK_CHARS}" != "0" ]; then
+    echo "CHUNK_CHARS requires LONG_CONTEXT=true" >&2
+    exit 1
+fi
 
 # --- Main Execution ---
 
@@ -76,7 +84,12 @@ for TASK_NAME in "${TASKS[@]}"; do
     fi
 
     if [ "${LONG_CONTEXT}" = "true" ]; then
-        CMD+=(--doc_max_length "40960")
+        if [ "${CHUNK_CHARS}" != "0" ]; then
+            CMD+=(--doc_max_length "${DOC_MAX_LENGTH:-8192}")
+        else
+            CMD+=(--doc_max_length "${DOC_MAX_LENGTH:-40960}")
+        fi
+        CMD+=(--query_max_length "${QUERY_MAX_LENGTH}" --chunk_chars "${CHUNK_CHARS}")
         CMD+=(--long_context)
     fi
 
